@@ -13,15 +13,15 @@ public class Meal {
 
     private String title;
     private String name;
-    private String recepie;
+    private String recipe;
 
     public Meal() { }
 
-    public Meal(Long idMeal, String title, String name, String recepie) {
+    public Meal(Long idMeal, String title, String name, String recipe) {
         this.idMeal = idMeal;
         this.title = title;
         this.name = name;
-        this.recepie = recepie;
+        this.recipe = recipe;
     }
 
     public Long getIdMeal() {
@@ -48,11 +48,11 @@ public class Meal {
         this.name = name;
     }
 
-    public String getRecepie() {
-        return recepie;
+    public String getRecipe() {
+        return recipe;
     }
 
-    public void setRecepie(String recepie) {
-        this.recepie = recepie;
+    public void setRecipe(String recepie) {
+        this.recipe = recepie;
     }
 }

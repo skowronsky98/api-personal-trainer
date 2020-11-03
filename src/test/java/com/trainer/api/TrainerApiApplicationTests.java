@@ -8,6 +8,7 @@ class TrainerApiApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

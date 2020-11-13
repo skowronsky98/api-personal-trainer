@@ -1,14 +1,12 @@
 package com.trainer.api.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document(collection = "meal")
 public class Meal {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMeal;
 
     private String title;

@@ -1,39 +1,37 @@
 package com.trainer.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "trainer")
-public class Trainer {
+@Document(collection = "mentee")
+public class Mentee {
 
     @Id
     private String _id;
     private String name;
     private String surname;
     private String bio;
-    private Double price;
 
-    private List<Meal> meals;
     private Dimensions dimensions;
 
     @DBRef(lazy = true)
-    private List<Mentee> mentees;
+    private List<Trainer> trainers;
 
-    public Trainer() {
-    }
-
-    public Trainer(String _id, String name, String surname, String bio, Double price, List<Meal> meals, Dimensions dimensions, List<Mentee> mentees) {
+    public Mentee(String _id, String name, String surname, String bio, Dimensions dimensions, List<Trainer> trainers) {
         this._id = _id;
         this.name = name;
         this.surname = surname;
         this.bio = bio;
-        this.price = price;
-        this.meals = meals;
         this.dimensions = dimensions;
-        this.mentees = mentees;
+        this.trainers = trainers;
+    }
+
+    public Mentee() {
     }
 
     public String get_id() {
@@ -42,22 +40,6 @@ public class Trainer {
 
     public void set_id(String _id) {
         this._id = _id;
-    }
-
-    public Dimensions getDimensions() {
-        return dimensions;
-    }
-
-    public void setDimensions(Dimensions dimensions) {
-        this.dimensions = dimensions;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public String getName() {
@@ -84,19 +66,19 @@ public class Trainer {
         this.bio = bio;
     }
 
-    public List<Meal> getMeals() {
-        return meals;
+    public Dimensions getDimensions() {
+        return dimensions;
     }
 
-    public void setMeals(List<Meal> meals) {
-        this.meals = meals;
+    public void setDimensions(Dimensions dimensions) {
+        this.dimensions = dimensions;
     }
 
-    public List<Mentee> getMentees() {
-        return mentees;
+    public List<Trainer> getTrainers() {
+        return trainers;
     }
 
-    public void setMentees(List<Mentee> mentees) {
-        this.mentees = mentees;
+    public void setTrainers(List<Trainer> trainers) {
+        this.trainers = trainers;
     }
 }

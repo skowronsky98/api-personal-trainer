@@ -1,9 +1,8 @@
 package com.trainer.api.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "meal")
+
 public class Meal {
 
     @Id

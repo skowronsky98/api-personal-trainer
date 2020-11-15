@@ -48,6 +48,7 @@ public class MenteeService {
         return menteeDao.addMentee(mentee);
     }
 
+    //com
     public Collection<MenteeDTO> getAllMenteeDTO() {
         Collection<Mentee> mentees = menteeDao.getAllMentee();
         Collection<MenteeDTO> menteesDTO = new ArrayList<>();

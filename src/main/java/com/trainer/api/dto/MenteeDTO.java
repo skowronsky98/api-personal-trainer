@@ -22,9 +22,10 @@ public class MenteeDTO {
 
     public void setTrainers(List<Trainer> trainers) {
 
-        trainers.forEach(trainer -> {
-            trainer.setMentees(new ArrayList<>());
-        });
+        if(trainers != null)
+            trainers.forEach(trainer -> {
+                trainer.setMentees(new ArrayList<>());
+            });
 
         this.trainers = trainers;
     }

@@ -14,18 +14,19 @@ public class MenteeDTO {
 
     private Dimensions dimensions;
 
-    private List<Trainer> trainers;
+   private List<Trainer> trainers;
 
     public List<Trainer> getTrainers() {
         return trainers;
     }
 
     public void setTrainers(List<Trainer> trainers) {
-        if(trainers!= null) {
+
+        if(trainers != null)
             trainers.forEach(trainer -> {
                 trainer.setMentees(new ArrayList<>());
             });
-        }
+
         this.trainers = trainers;
     }
 

@@ -2,6 +2,8 @@ package com.trainer.api.service;
 
 import com.trainer.api.dao.MenteeDao;
 import com.trainer.api.dao.TrainerDao;
+import com.trainer.api.dto.TrainerDTO;
+import com.trainer.api.mapper.Mapper;
 import com.trainer.api.model.Meal;
 import com.trainer.api.model.Mentee;
 import com.trainer.api.model.Trainer;
@@ -19,6 +21,10 @@ public class TrainerService {
 
     @Autowired
     private MenteeDao menteeDao;
+
+    @Autowired
+    private Mapper mapper;
+
 
     public Collection<Trainer> getAllTrainers(){
         return trainerDao.getAllTrainers();
@@ -43,6 +49,18 @@ public class TrainerService {
         trainer.setMentees(mentees);
 
         return trainerDao.addTrainer(trainer);
+    }
+
+
+    public Collection<TrainerDTO> getAllTrainersDTO(){
+        Collection<Trainer> trainers = trainerDao.getAllTrainers();
+        Collection<TrainerDTO> trainersDTO = new ArrayList<>();
+
+        trainers.forEach(trainer -> {
+            trainersDTO.add(mapper.getTrainerMapper().map(trainer,TrainerDTO.class));
+        });
+
+        return trainersDTO;
     }
 
 }

@@ -13,7 +13,6 @@ public class TrainerDao {
     @Autowired
     private TrainerRepo trainerRepo;
 
-
     public List<Trainer> getAllTrainers() {
         return trainerRepo.findAll();
     }

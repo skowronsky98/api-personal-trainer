@@ -1,5 +1,6 @@
 package com.trainer.api.controller;
 
+import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.model.Mentee;
 import com.trainer.api.model.Trainer;
 import com.trainer.api.service.TrainerService;
@@ -16,8 +17,8 @@ public class TrainerController {
     private TrainerService trainerService;
 
     @GetMapping
-    public Collection<Trainer> getTrainers(){
-        return trainerService.getAllTrainers();
+    public Collection<TrainerDTO> getTrainers(){
+        return trainerService.getAllTrainersDTO();
     }
 
     @GetMapping("/mentees")

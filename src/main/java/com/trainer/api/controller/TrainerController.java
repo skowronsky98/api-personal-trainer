@@ -26,7 +26,6 @@ public class TrainerController {
 
         return trainerService.getAllTrainerMentee(idTrainer);
     }
-    //zdz
 
     @PostMapping
     public Trainer addTrainer(@RequestBody Trainer trainer){

@@ -5,8 +5,8 @@ import com.trainer.api.dao.MenteeDao;
 import com.trainer.api.dao.TrainerDao;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.mapper.Mapper;
-import com.trainer.api.model.Mentee;
-import com.trainer.api.model.Trainer;
+import com.trainer.api.model.user.Mentee;
+import com.trainer.api.model.user.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

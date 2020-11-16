@@ -1,7 +1,7 @@
 package com.trainer.api.dao;
 
-import com.trainer.api.model.Mentee;
-import com.trainer.api.model.Trainer;
+import com.trainer.api.model.user.Mentee;
+import com.trainer.api.model.user.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

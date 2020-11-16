@@ -2,11 +2,10 @@ package com.trainer.api.mapper;
 
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
-import com.trainer.api.model.Mentee;
-import com.trainer.api.model.Trainer;
+import com.trainer.api.model.user.Mentee;
+import com.trainer.api.model.user.Trainer;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,11 +16,12 @@ public class Mapper {
         modelMapper.addMappings(new PropertyMap<Mentee, MenteeDTO>() {
             @Override
             protected void configure() {
-                map().setName(source.getName());
-                map().setSurname(source.getSurname());
-                map().setBio(source.getBio());
+                map().setEmail(source.getEmail());
+                map().setProfile(source.getProfile());
+                map().setTarget(source.getTarget());
                 map().setDimensions(source.getDimensions());
                 map().setTrainers(source.getTrainers());
+                map().setWeekPlans(source.getWeekPlans());
             }
         });
 
@@ -34,10 +34,9 @@ public class Mapper {
         modelMapper.addMappings(new PropertyMap<Trainer, TrainerDTO>() {
             @Override
             protected void configure(){
-                map().setName(source.getName());
-                map().setSurname(source.getSurname());
-                map().setBio(source.getBio());
-                map().setPrice(source.getPrice());
+                map().setEmail(source.getEmail());
+                map().setProfile(source.getProfile());
+                map().setAdvertisment(source.getAdvertisment());
                 map().setMeals(source.getMeals());
                 map().setDimensions(source.getDimensions());
                 map().setMentees(source.getMentees());

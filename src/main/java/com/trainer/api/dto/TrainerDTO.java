@@ -1,78 +1,58 @@
 package com.trainer.api.dto;
 
+import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.Dimensions;
 import com.trainer.api.model.Meal;
-import com.trainer.api.model.Mentee;
-import com.trainer.api.model.Trainer;
+import com.trainer.api.model.Profile;
+import com.trainer.api.model.user.Mentee;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
 public class TrainerDTO {
 
-    private String name;
-    private String surname;
-    private String bio;
-    private Double price;
+    private String email;
+    private Profile profile;
 
-    private List<Meal> meals;
+
+    private Collection<Meal> meals;
     private Dimensions dimensions;
-    private List<Mentee> mentees;
+    private Advertisment advertisment;
+
+    private Collection<Mentee> mentees;
 
 
-    public List<Mentee> getMentees() {
+    public Collection<Mentee> getMentees() {
         return mentees;
     }
 
-    public void setMentees(List<Mentee> mentees) {
-        if(mentees!=null){
-            mentees.forEach(mentee -> {
-                mentee.setTrainers(new ArrayList<>());
-            });
-        }
-        this.mentees = mentees;
+    public void setMentees(Collection<Mentee> mentees) {
+        this.mentees = new ArrayList<>();
     }
 
-
-
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getSurname() {
-        return surname;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public List<Meal> getMeals() {
+    public Collection<Meal> getMeals() {
         return meals;
     }
 
-    public void setMeals(List<Meal> meals) {
+    public void setMeals(Collection<Meal> meals) {
         this.meals = meals;
     }
 
@@ -82,5 +62,13 @@ public class TrainerDTO {
 
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
+    }
+
+    public Advertisment getAdvertisment() {
+        return advertisment;
+    }
+
+    public void setAdvertisment(Advertisment advertisment) {
+        this.advertisment = advertisment;
     }
 }

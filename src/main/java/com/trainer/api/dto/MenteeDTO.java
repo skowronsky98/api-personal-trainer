@@ -1,57 +1,69 @@
 package com.trainer.api.dto;
 
 import com.trainer.api.model.Dimensions;
-import com.trainer.api.model.Trainer;
+import com.trainer.api.model.Profile;
+import com.trainer.api.model.Raport;
+import com.trainer.api.model.plan.WeekPlan;
+import com.trainer.api.model.user.Trainer;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class MenteeDTO {
 
-    private String name;
-    private String surname;
-    private String bio;
+    private String email;
+    private Profile profile;
+    private String target;
 
     private Dimensions dimensions;
 
-   private List<Trainer> trainers;
+    private Collection<Trainer> trainers;
+    private Collection<Raport> raports;
+    private Collection<WeekPlan> weekPlans;
 
-    public List<Trainer> getTrainers() {
+
+    public Collection<Trainer> getTrainers() {
         return trainers;
     }
 
-    public void setTrainers(List<Trainer> trainers) {
-
-        if(trainers != null)
-            trainers.forEach(trainer -> {
-                trainer.setMentees(new ArrayList<>());
-            });
-
-        this.trainers = trainers;
+    public String getEmail() {
+        return email;
     }
 
-    public String getName() {
-        return name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Collection<Raport> getRaports() {
+        return raports;
     }
 
-    public String getSurname() {
-        return surname;
+    public void setRaports(Collection<Raport> raports) {
+        this.raports = raports;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public Collection<WeekPlan> getWeekPlans() {
+        return weekPlans;
     }
 
-    public String getBio() {
-        return bio;
+    public void setWeekPlans(Collection<WeekPlan> weekPlans) {
+        this.weekPlans = weekPlans;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
     }
 
     public Dimensions getDimensions() {
@@ -62,5 +74,7 @@ public class MenteeDTO {
         this.dimensions = dimensions;
     }
 
-
+    public void setTrainers(Collection<Trainer> trainers) {
+        this.trainers = new ArrayList<>();
+    }
 }

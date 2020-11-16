@@ -1,6 +1,6 @@
 package com.trainer.api.dao;
 
-import com.trainer.api.model.Mentee;
+import com.trainer.api.model.user.Mentee;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

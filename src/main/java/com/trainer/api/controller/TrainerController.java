@@ -1,8 +1,8 @@
 package com.trainer.api.controller;
 
 import com.trainer.api.dto.TrainerDTO;
-import com.trainer.api.model.Mentee;
-import com.trainer.api.model.Trainer;
+import com.trainer.api.model.user.Mentee;
+import com.trainer.api.model.user.Trainer;
 import com.trainer.api.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

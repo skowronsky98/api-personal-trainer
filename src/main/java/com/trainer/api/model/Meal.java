@@ -1,24 +1,22 @@
 package com.trainer.api.model;
 
-import org.springframework.data.annotation.Id;
-
 
 public class Meal {
 
-    @Id
     private Long idMeal;
-
-    private String title;
     private String name;
+    private String components;
     private String recipe;
+    private double kcal;
 
     public Meal() { }
 
-    public Meal(Long idMeal, String title, String name, String recipe) {
+    public Meal(Long idMeal, String name, String components, String recipe, double kcal) {
         this.idMeal = idMeal;
-        this.title = title;
         this.name = name;
+        this.components = components;
         this.recipe = recipe;
+        this.kcal = kcal;
     }
 
     public Long getIdMeal() {
@@ -29,14 +27,6 @@ public class Meal {
         this.idMeal = idMeal;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getName() {
         return name;
     }
@@ -45,11 +35,27 @@ public class Meal {
         this.name = name;
     }
 
+    public String getComponents() {
+        return components;
+    }
+
+    public void setComponents(String components) {
+        this.components = components;
+    }
+
     public String getRecipe() {
         return recipe;
     }
 
-    public void setRecipe(String recepie) {
-        this.recipe = recepie;
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
+    }
+
+    public double getKcal() {
+        return kcal;
+    }
+
+    public void setKcal(double kcal) {
+        this.kcal = kcal;
     }
 }

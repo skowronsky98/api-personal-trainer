@@ -35,7 +35,7 @@ public class MenteeService {
 
     public Mentee assignTrainer(String idMentee, String idTrainer){
         Mentee mentee = menteeDao.getMenteeByID(idMentee).get();
-        Trainer trainer = trainerDao.getTrainnerById(idTrainer).get();
+        Trainer trainer = trainerDao.getTrainnerById(idTrainer);
         List<Trainer> trainers = mentee.getTrainers();
         if(trainers == null)
             trainers = new ArrayList<>();

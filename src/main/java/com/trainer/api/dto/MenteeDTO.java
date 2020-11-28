@@ -8,6 +8,7 @@ import com.trainer.api.model.user.Trainer;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class MenteeDTO {
 
@@ -17,12 +18,12 @@ public class MenteeDTO {
 
     private Dimensions dimensions;
 
-    private Collection<Trainer> trainers;
+    private List<Trainer> trainers;
     private Collection<Raport> raports;
     private Collection<WeekPlan> weekPlans;
 
 
-    public Collection<Trainer> getTrainers() {
+    public List<Trainer> getTrainers() {
         return trainers;
     }
 
@@ -74,7 +75,7 @@ public class MenteeDTO {
         this.dimensions = dimensions;
     }
 
-    public void setTrainers(Collection<Trainer> trainers) {
+    public void setTrainers(List<Trainer> trainers) {
         this.trainers = new ArrayList<>();
     }
 }

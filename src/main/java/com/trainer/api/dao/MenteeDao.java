@@ -1,5 +1,6 @@
 package com.trainer.api.dao;
 
+import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.model.user.Mentee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,12 @@ public class MenteeDao {
 
     public Mentee addMentee(Mentee mentee){
         return menteeRepo.save(mentee);
+    }
+
+    public Mentee getMentee(String idMentee){
+        return menteeRepo
+                .findById(idMentee)
+                .orElseThrow(() -> new ResourceNotFoundException("id mentee: "+idMentee));
     }
 
     public Optional<Mentee> getMenteeByID(String idMentee){

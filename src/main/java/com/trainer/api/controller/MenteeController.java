@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/api/trainer/mentee")
+@RequestMapping("/api/mentee")
 public class MenteeController {
     @Autowired
     private MenteeService menteeService;
@@ -29,5 +29,7 @@ public class MenteeController {
                                       @RequestHeader(value = "tid") String idTrainer){
         return menteeService.assignTrainer(idMentee,idTrainer);
     }
+
+
 
 }

@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class Mentee {
     }
 
     public Collection<Raport> getRaports() {
-        return raports;
+        return raports == null ? new ArrayList<>() : raports;
     }
 
     public void setRaports(Collection<Raport> raports) {
@@ -92,7 +93,7 @@ public class Mentee {
     }
 
     public Collection<WeekPlan> getWeekPlans() {
-        return weekPlans;
+        return weekPlans == null ? new ArrayList<>() : weekPlans;
     }
 
     public void setWeekPlans(Collection<WeekPlan> weekPlans) {
@@ -100,7 +101,7 @@ public class Mentee {
     }
 
     public List<Trainer> getTrainers() {
-        return trainers;
+        return trainers == null ? new ArrayList<>() : trainers;
     }
 
     public void setTrainers(List<Trainer> trainers) {

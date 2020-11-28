@@ -21,14 +21,14 @@ public class TrainerDTO {
     private Dimensions dimensions;
     private Advertisment advertisment;
 
-    private Collection<Mentee> mentees;
+    private List<Mentee> mentees;
 
 
-    public Collection<Mentee> getMentees() {
+    public List<Mentee> getMentees() {
         return mentees;
     }
 
-    public void setMentees(Collection<Mentee> mentees) {
+    public void setMentees(List<Mentee> mentees) {
         this.mentees = new ArrayList<>();
     }
 

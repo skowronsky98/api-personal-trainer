@@ -1,8 +1,7 @@
-package com.trainer.api.dao;
+package com.trainer.api.repo;
 
 import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.model.Profile;
-import com.trainer.api.model.plan.WeekPlan;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
-public class TrainerDao {
+public class TrainerImpl {
     @Autowired
     private TrainerRepo trainerRepo;
 
@@ -53,4 +51,5 @@ public class TrainerDao {
             return trainerRepo.save(trainer);
         }).orElseThrow(() -> new ResourceNotFoundException("add metee to list"));
     }
+    
 }

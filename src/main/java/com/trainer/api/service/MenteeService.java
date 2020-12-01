@@ -1,8 +1,8 @@
 package com.trainer.api.service;
 
 
-import com.trainer.api.dao.MenteeDao;
-import com.trainer.api.dao.TrainerDao;
+import com.trainer.api.repo.MenteeImpl;
+import com.trainer.api.repo.TrainerImpl;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.mapper.Mapper;
 import com.trainer.api.model.user.Mentee;
@@ -17,25 +17,25 @@ import java.util.List;
 @Service
 public class MenteeService {
     @Autowired
-    private MenteeDao menteeDao;
+    private MenteeImpl menteeImpl;
 
     @Autowired
-    private TrainerDao trainerDao;
+    private TrainerImpl trainerImpl;
 
     @Autowired
     private Mapper mapper;
 
     public Collection<Mentee> getAllMentee(){
-        return menteeDao.getAllMentee();
+        return menteeImpl.getAllMentee();
     }
 
     public Mentee addMentee(Mentee mentee){
-        return menteeDao.addMentee(mentee);
+        return menteeImpl.addMentee(mentee);
     }
 
     public Mentee assignTrainer(String idMentee, String idTrainer){
-        Mentee mentee = menteeDao.getMenteeByID(idMentee).get();
-        Trainer trainer = trainerDao.getTrainnerById(idTrainer);
+        Mentee mentee = menteeImpl.getMenteeByID(idMentee).get();
+        Trainer trainer = trainerImpl.getTrainnerById(idTrainer);
         List<Trainer> trainers = mentee.getTrainers();
         if(trainers == null)
             trainers = new ArrayList<>();
@@ -45,12 +45,12 @@ public class MenteeService {
 
         mentee.setTrainers(trainers);
 
-        return menteeDao.addMentee(mentee);
+        return menteeImpl.addMentee(mentee);
     }
 
     //com
     public Collection<MenteeDTO> getAllMenteeDTO() {
-        Collection<Mentee> mentees = menteeDao.getAllMentee();
+        Collection<Mentee> mentees = menteeImpl.getAllMentee();
         Collection<MenteeDTO> menteesDTO = new ArrayList<>();
 
         mentees.forEach(mentee -> {

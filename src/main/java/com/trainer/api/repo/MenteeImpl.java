@@ -1,4 +1,4 @@
-package com.trainer.api.dao;
+package com.trainer.api.repo;
 
 import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.model.user.Mentee;
@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Component
-public class MenteeDao {
+public class MenteeImpl {
     @Autowired
     private MenteeRepo menteeRepo;
 

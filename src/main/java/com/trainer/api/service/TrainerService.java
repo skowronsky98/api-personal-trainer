@@ -1,39 +1,31 @@
 package com.trainer.api.service;
 
-import com.trainer.api.dao.MenteeDao;
-import com.trainer.api.dao.TrainerDao;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
-import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.mapper.Mapper;
-import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
+import com.trainer.api.repo.MenteeImpl;
+import com.trainer.api.repo.TrainerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TrainerService {
+public class TrainerService{
     @Autowired
-    private TrainerDao trainerDao;
+    private TrainerImpl trainerImpl;
 
     @Autowired
-    private MenteeDao menteeDao;
+    private MenteeImpl menteeImpl;
 
     @Autowired
     private Mapper mapper;
 
-
-//    public Collection<Trainer> getAllTrainers(){
-//        return trainerDao.getAllTrainers();
-//    }
-
     public List<MenteeDTO> getTrainerMentees(String id){
-        return trainerDao
+        return trainerImpl
                 .getTrainerMentees(id)
                 .stream()
                 .map(mentee -> mapper
@@ -43,18 +35,18 @@ public class TrainerService {
     }
 
     public Trainer addTrainer(Trainer trainer){
-        return trainerDao.addTrainer(trainer);
+        return trainerImpl.addTrainer(trainer);
     }
 
     public TrainerDTO assignMentee(String idMentee, String idTrainer){
         return mapper
                 .getTrainerMapper()
-                .map(trainerDao.assignMentee(idTrainer,menteeDao.getMentee(idMentee)),TrainerDTO.class);
+                .map(trainerImpl.assignMentee(idTrainer, menteeImpl.getMentee(idMentee)),TrainerDTO.class);
     }
 
 
     public Collection<TrainerDTO> getAllTrainers(){
-        return trainerDao.getAllTrainers()
+        return trainerImpl.getAllTrainers()
                 .stream()
                 .map(trainer -> mapper
                         .getTrainerMapper()
@@ -65,6 +57,6 @@ public class TrainerService {
     public MenteeDTO getTrainerMenteeById(String idTrainer, String idMentee) {
         return mapper
                 .getMenteeMapper()
-                .map(trainerDao.getTrainerMenteeById(idTrainer,idMentee),MenteeDTO.class);
+                .map(trainerImpl.getTrainerMenteeById(idTrainer,idMentee),MenteeDTO.class);
     }
 }

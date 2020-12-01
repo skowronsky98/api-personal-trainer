@@ -6,29 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Component
-public class MenteeImpl {
+public class MenteeImpl implements MenteeRepo{
     @Autowired
-    private MenteeRepo menteeRepo;
+    private MenteeManager menteeManager;
 
+    @Override
     public Collection<Mentee> getAllMentee(){
-        return menteeRepo.findAll();
+        return menteeManager.findAll();
     }
 
+    @Override
     public Mentee addMentee(Mentee mentee){
-        return menteeRepo.save(mentee);
+        return menteeManager.save(mentee);
     }
 
+    @Override
     public Mentee getMentee(String idMentee){
-        return menteeRepo
+        return menteeManager
                 .findById(idMentee)
                 .orElseThrow(() -> new ResourceNotFoundException("id mentee: "+idMentee));
     }
 
-    public Optional<Mentee> getMenteeByID(String idMentee){
-        return menteeRepo.findById(idMentee);
+    @Override
+    public Mentee getMenteeByID(String idMentee){
+        return menteeManager
+                .findById(idMentee)
+                .orElseThrow(() -> new ResourceNotFoundException("id mentee: "+idMentee));
     }
 
 }

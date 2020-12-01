@@ -5,7 +5,7 @@ import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.mapper.Mapper;
 import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.MenteeImpl;
-import com.trainer.api.repo.TrainerImpl;
+import com.trainer.api.repo.TrainerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class TrainerService{
+    //dobrze
     @Autowired
-    private TrainerImpl trainerImpl;
+    private TrainerRepo trainerRepo;
 
+    //zle
     @Autowired
     private MenteeImpl menteeImpl;
 
@@ -25,7 +27,7 @@ public class TrainerService{
     private Mapper mapper;
 
     public List<MenteeDTO> getTrainerMentees(String id){
-        return trainerImpl
+        return trainerRepo
                 .getTrainerMentees(id)
                 .stream()
                 .map(mentee -> mapper
@@ -35,18 +37,17 @@ public class TrainerService{
     }
 
     public Trainer addTrainer(Trainer trainer){
-        return trainerImpl.addTrainer(trainer);
+        return trainerRepo.addTrainer(trainer);
     }
 
     public TrainerDTO assignMentee(String idMentee, String idTrainer){
         return mapper
                 .getTrainerMapper()
-                .map(trainerImpl.assignMentee(idTrainer, menteeImpl.getMentee(idMentee)),TrainerDTO.class);
+                .map(trainerRepo.assignMentee(idTrainer, menteeImpl.getMentee(idMentee)),TrainerDTO.class);
     }
 
-
     public Collection<TrainerDTO> getAllTrainers(){
-        return trainerImpl.getAllTrainers()
+        return trainerRepo.getAllTrainers()
                 .stream()
                 .map(trainer -> mapper
                         .getTrainerMapper()
@@ -57,6 +58,6 @@ public class TrainerService{
     public MenteeDTO getTrainerMenteeById(String idTrainer, String idMentee) {
         return mapper
                 .getMenteeMapper()
-                .map(trainerImpl.getTrainerMenteeById(idTrainer,idMentee),MenteeDTO.class);
+                .map(trainerRepo.getTrainerMenteeById(idTrainer,idMentee),MenteeDTO.class);
     }
 }

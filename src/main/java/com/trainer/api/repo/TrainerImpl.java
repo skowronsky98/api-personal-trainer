@@ -11,24 +11,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class TrainerImpl {
+public class TrainerImpl implements TrainerRepo {
     @Autowired
-    private TrainerRepo trainerRepo;
+    private TrainerManager trainerManager;
 
-    public List<Trainer> getAllTrainers() {
-        return trainerRepo.findAll();
-    }
 
+    @Override
     public Trainer addTrainer(Trainer trainer){
-        return trainerRepo.save(trainer);
+        return trainerManager.save(trainer);
     }
 
-    public Trainer getTrainnerById(String id){
-        return trainerRepo
+    @Override
+    public List<Trainer> getAllTrainers() {
+        return trainerManager.findAll();
+    }
+
+    @Override
+    public Trainer getTrainerById(String id){
+        return trainerManager
                 .findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("id trainner: "+id));
     }
 
+    @Override
     public Mentee getTrainerMenteeById(String trainnerID, String menteeID){
         return getTrainerMentees(trainnerID)
                 .stream()
@@ -37,18 +42,21 @@ public class TrainerImpl {
                 .orElseThrow(() -> new ResourceNotFoundException("mentee not found: "+menteeID));
     }
 
+    @Override
     public List<Mentee> getTrainerMentees(String id){
-        return getTrainnerById(id).getMentees() == null ? new ArrayList<>() : getTrainnerById(id).getMentees();
+        return getTrainerById(id).getMentees() == null ? new ArrayList<>() : getTrainerById(id).getMentees();
     }
 
-    public Profile getProfile(String id){
-        return getTrainnerById(id).getProfile();
+    @Override
+    public Profile getProfile(String idTrainer){
+        return getTrainerById(idTrainer).getProfile();
     }
 
+    @Override
     public Trainer assignMentee(String idTrainer, Mentee mentee){
-        return trainerRepo.findById(idTrainer).map(trainer -> {
+        return trainerManager.findById(idTrainer).map(trainer -> {
             trainer.setMentees(trainer.addMentee(mentee));
-            return trainerRepo.save(trainer);
+            return trainerManager.save(trainer);
         }).orElseThrow(() -> new ResourceNotFoundException("add metee to list"));
     }
     

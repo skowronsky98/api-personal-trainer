@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.trainer.api.controller.MenteeController</OriginalElement>
+  <nodes>
+    <node x="963.6596153846152" y="88.0">com.trainer.api.model.Advertisment</node>
+    <node x="0.0" y="674.0">com.trainer.api.model.Raport</node>
+    <node x="1279.6596153846153" y="22.0">com.trainer.api.model.Meal</node>
+    <node x="132.92211538461527" y="0.0">com.trainer.api.model.Dimensions</node>
+    <node x="286.92211538461527" y="1162.0">com.trainer.api.model.user.Mentee</node>
+    <node x="747.2798076923075" y="531.0">com.trainer.api.model.user.Trainer</node>
+    <node x="1046.9221153846152" y="1360.5">com.trainer.api.controller.TrainerController</node>
+    <node x="505.42211538461527" y="1817.0">com.trainer.api.controller.MenteeController</node>
+    <node x="585.9221153846153" y="55.0">com.trainer.api.model.Profile</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.trainer.api.model.user.Trainer" target="com.trainer.api.model.user.Mentee">
+      <point x="0.0" y="280.5" />
+      <point x="1038.7798076923075" y="1132.0" />
+      <point x="915.9221153846153" y="1132.0" />
+      <point x="259.0" y="-302.5" />
+    </edge>
+    <edge source="com.trainer.api.model.user.Mentee" target="com.trainer.api.model.user.Trainer">
+      <point x="111.0" y="-302.5" />
+      <point x="767.9221153846153" y="1142.0" />
+      <point x="805.5798076923074" y="1142.0" />
+      <point x="-233.20000000000005" y="280.5" />
+    </edge>
+    <edge source="com.trainer.api.controller.TrainerController" target="com.trainer.api.model.user.Trainer">
+      <point x="0.0" y="-104.0" />
+      <point x="1234.4221153846152" y="1142.0" />
+      <point x="1271.9798076923075" y="1142.0" />
+      <point x="233.20000000000005" y="280.5" />
+    </edge>
+    <edge source="com.trainer.api.controller.MenteeController" target="com.trainer.api.model.user.Mentee">
+      <point x="0.0" y="-60.0" />
+      <point x="0.0" y="302.5" />
+    </edge>
+    <edge source="com.trainer.api.model.user.Trainer" target="com.trainer.api.model.Meal">
+      <point x="182.1875" y="-280.5" />
+      <point x="1220.9673076923075" y="501.0" />
+      <point x="1357.4096153846153" y="501.0" />
+      <point x="-77.75" y="203.5" />
+    </edge>
+    <edge source="com.trainer.api.model.user.Mentee" target="com.trainer.api.model.Profile">
+      <point x="37.0" y="-302.5" />
+      <point x="693.9221153846153" y="1142.0" />
+      <point x="662.4221153846153" y="1142.0" />
+      <point x="662.4221153846153" y="511.0" />
+      <point x="692.4221153846153" y="511.0" />
+      <point x="-35.5" y="170.5" />
+    </edge>
+    <edge source="com.trainer.api.model.user.Trainer" target="com.trainer.api.model.Advertisment">
+      <point x="36.4375" y="-280.5" />
+      <point x="1075.2173076923075" y="511.0" />
+      <point x="1037.6596153846153" y="511.0" />
+      <point x="-74.0" y="137.5" />
+    </edge>
+    <edge source="com.trainer.api.model.user.Mentee" target="com.trainer.api.model.Dimensions">
+      <point x="-111.0" y="-302.5" />
+      <point x="545.9221153846153" y="1112.0" />
+      <point x="247.49999999999994" y="1112.0" />
+      <point x="247.49999999999994" y="511.0" />
+      <point x="295.29711538461527" y="511.0" />
+      <point x="-54.125" y="225.5" />
+    </edge>
+    <edge source="com.trainer.api.model.user.Trainer" target="com.trainer.api.model.Dimensions">
+      <point x="-182.1875" y="-280.5" />
+      <point x="856.5923076923075" y="491.0" />
+      <point x="511.79711538461527" y="491.0" />
+      <point x="162.375" y="225.5" />
+    </edge>
+    <edge source="com.trainer.api.model.user.Trainer" target="com.trainer.api.model.Profile">
+      <point x="-36.4375" y="-280.5" />
+      <point x="1002.3423076923075" y="471.0" />
+      <point x="834.4221153846153" y="471.0" />
+      <point x="106.5" y="170.5" />
+    </edge>
+    <edge source="com.trainer.api.model.user.Mentee" target="com.trainer.api.model.Raport">
+      <point x="-333.0" y="-302.5" />
+      <point x="323.92211538461527" y="1142.0" />
+      <point x="56.5" y="1142.0" />
+      <point x="-56.5" y="137.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.44165181021129474" x="1078.820805587506" y="1011.3371499790567" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

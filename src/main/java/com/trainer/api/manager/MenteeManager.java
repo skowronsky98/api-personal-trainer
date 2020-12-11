@@ -1,4 +1,4 @@
-package com.trainer.api.repo;
+package com.trainer.api.manager;
 
 import com.trainer.api.model.user.Mentee;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -9,7 +9,10 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String firstname, String surname, Integer age, String bio) {
+    public Profile(String firstname,
+                   String surname,
+                   Integer age,
+                   String bio) {
         this.firstname = firstname;
         this.surname = surname;
         this.age = age;

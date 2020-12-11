@@ -33,7 +33,14 @@ public class Mentee {
     public Mentee() {
     }
 
-    public Mentee(String _id, String email, Profile profile, String target, Dimensions dimensions, Collection<Raport> raports, Collection<WeekPlan> weekPlans, List<Trainer> trainers) {
+    public Mentee(String _id,
+                  String email,
+                  Profile profile,
+                  String target,
+                  Dimensions dimensions,
+                  Collection<Raport> raports,
+                  Collection<WeekPlan> weekPlans,
+                  List<Trainer> trainers) {
         this._id = _id;
         this.email = email;
         this.profile = profile;

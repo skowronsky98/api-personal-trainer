@@ -11,7 +11,11 @@ public class Meal {
 
     public Meal() { }
 
-    public Meal(Long idMeal, String name, String components, String recipe, double kcal) {
+    public Meal(Long idMeal,
+                String name,
+                String components,
+                String recipe,
+                double kcal) {
         this.idMeal = idMeal;
         this.name = name;
         this.components = components;

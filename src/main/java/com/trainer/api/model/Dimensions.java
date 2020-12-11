@@ -8,7 +8,12 @@ public class Dimensions {
     private double chest;
     private double waist;
 
-    public Dimensions(double neck, double arm, double forearm, double wrist, double chest, double waist) {
+    public Dimensions(double neck,
+                      double arm,
+                      double forearm,
+                      double wrist,
+                      double chest,
+                      double waist) {
         this.neck = neck;
         this.arm = arm;
         this.forearm = forearm;

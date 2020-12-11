@@ -31,7 +31,13 @@ public class Trainer {
     public Trainer() {
     }
 
-    public Trainer(String _id, String email, Profile profile, Dimensions dimensions, Advertisment advertisment, List<Meal> meals, List<Mentee> mentees) {
+    public Trainer(String _id,
+                   String email,
+                   Profile profile,
+                   Dimensions dimensions,
+                   Advertisment advertisment,
+                   List<Meal> meals,
+                   List<Mentee> mentees) {
         this._id = _id;
         this.email = email;
         this.profile = profile;

@@ -1,8 +1,11 @@
 package com.trainer.api.controller;
 
 import com.trainer.api.dto.MenteeDTO;
+import com.trainer.api.model.Profile;
+import com.trainer.api.model.plan.WeekPlan;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.service.MenteeService;
+import com.trainer.api.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,22 +17,38 @@ public class MenteeController {
     @Autowired
     private MenteeService menteeService;
 
+    @Autowired
+    private PlanService planService;
+
     @GetMapping
     public Collection<MenteeDTO> getAllMentee(){
         return menteeService.getAllMenteeDTO();
     }
 
     @PostMapping
-    public Mentee addMentee(@RequestBody Mentee mentee){
+    public MenteeDTO addMentee(@RequestBody Mentee mentee){
         return menteeService.addMentee(mentee);
     }
 
     @PatchMapping
-    public Mentee assignTraier(@RequestHeader(value = "mid")  String idMentee,
+    public MenteeDTO assignTraier(@RequestHeader(value = "mid")  String idMentee,
                                       @RequestHeader(value = "tid") String idTrainer){
         return menteeService.assignTrainer(idMentee,idTrainer);
     }
 
+    @GetMapping("/weekplans")
+    public Collection<WeekPlan> getWeekPlans(@RequestHeader(value = "id")  String idMentee){
+        return planService.getWeekPlans(idMentee);
+    }
 
+    @GetMapping("/profile")
+    public Profile getProfile(@RequestHeader(value = "id")  String idMentee){
+        return menteeService.getProfile(idMentee);
+    }
 
+    @PostMapping("/profile")
+    public Profile setProfile(@RequestHeader(value = "id")  String idMentee,
+                              @RequestBody Profile profile){
+        return menteeService.setProfile(idMentee,profile);
+    }
 }

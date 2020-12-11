@@ -16,13 +16,11 @@ public class TrainerDTO {
     private String email;
     private Profile profile;
 
-
     private Collection<Meal> meals;
     private Dimensions dimensions;
     private Advertisment advertisment;
 
     private List<Mentee> mentees;
-
 
     public List<Mentee> getMentees() {
         return mentees;

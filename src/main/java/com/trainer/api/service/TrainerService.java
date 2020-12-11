@@ -3,8 +3,11 @@ package com.trainer.api.service;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.mapper.Mapper;
+import com.trainer.api.model.Profile;
+import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
-import com.trainer.api.repo.MenteeImpl;
+import com.trainer.api.repo.MenteeRepo;
+import com.trainer.api.repo.ProfileRepo;
 import com.trainer.api.repo.TrainerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +18,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class TrainerService{
-    //dobrze
     @Autowired
     private TrainerRepo trainerRepo;
 
-    //zle
     @Autowired
-    private MenteeImpl menteeImpl;
+    private MenteeRepo menteeRepo;
+
+    @Autowired
+    private ProfileRepo profileRepo;
 
     @Autowired
     private Mapper mapper;
@@ -40,14 +44,30 @@ public class TrainerService{
         return trainerRepo.addTrainer(trainer);
     }
 
-    public TrainerDTO assignMentee(String idMentee, String idTrainer){
-        return mapper
-                .getTrainerMapper()
-                .map(trainerRepo.assignMentee(idTrainer, menteeImpl.getMentee(idMentee)),TrainerDTO.class);
+    public Profile getProfile(String idTrainer){
+        return profileRepo.getTrainerProfile(idTrainer);
+    }
+
+    public Profile setProfile(String idTrainer, Profile profile){
+        return profileRepo.setTrainerProfile(idTrainer,profile);
+    }
+
+    public Collection<MenteeDTO> assignMentee(String idMentee, String idTrainer){
+        Mentee mentee = menteeRepo.getMentee(idMentee);
+
+        return trainerRepo
+                .assignMentee(idTrainer, mentee)
+                .getMentees()
+                .stream()
+                .map(m -> mapper
+                        .getMenteeMapper()
+                        .map(m,MenteeDTO.class))
+                .collect(Collectors.toList());
     }
 
     public Collection<TrainerDTO> getAllTrainers(){
-        return trainerRepo.getAllTrainers()
+        return trainerRepo
+                .getAllTrainers()
                 .stream()
                 .map(trainer -> mapper
                         .getTrainerMapper()

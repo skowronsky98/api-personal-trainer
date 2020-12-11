@@ -1,6 +1,7 @@
 package com.trainer.api.service;
 
 
+import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.model.Profile;
 import com.trainer.api.repo.MenteeRepo;
 import com.trainer.api.dto.MenteeDTO;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MenteeService {
@@ -48,19 +50,16 @@ public class MenteeService {
         return profileRepo.setMenteeProfile(idMentee,profile);
     }
 
-    public MenteeDTO assignTrainer(String idMentee, String idTrainer){
-        Mentee mentee = menteeRepo.getMenteeByID(idMentee);
+    public Collection<TrainerDTO> assignTrainer(String idMentee, String idTrainer){
         Trainer trainer = trainerRepo.getTrainerById(idTrainer);
-        List<Trainer> trainers = mentee.getTrainers();
-        if(trainers == null)
-            trainers = new ArrayList<>();
-
-
-        trainers.add(trainer);
-
-        mentee.setTrainers(trainers);
-
-        return mapper.getMenteeMapper().map(menteeRepo.addMentee(mentee),MenteeDTO.class);
+        return menteeRepo
+                .assignTrainer(idMentee,trainer)
+                .getTrainers()
+                .stream()
+                .map( t -> mapper
+                        .getTrainerMapper()
+                        .map(t,TrainerDTO.class))
+                .collect(Collectors.toList());
     }
 
     //com

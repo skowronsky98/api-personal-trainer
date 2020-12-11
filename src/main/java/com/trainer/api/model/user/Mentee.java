@@ -111,6 +111,13 @@ public class Mentee {
         return trainers == null ? new ArrayList<>() : trainers;
     }
 
+    public List<Trainer> addTrainer(Trainer trainer){
+        if(trainers == null)
+            trainers = new ArrayList<>();
+        trainers.add(trainer);
+        return trainers;
+    }
+
     public void setTrainers(List<Trainer> trainers) {
         this.trainers = trainers;
     }

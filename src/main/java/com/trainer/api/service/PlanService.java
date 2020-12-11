@@ -20,16 +20,6 @@ public class PlanService {
     @Autowired
     private WeekPlanRepo weekPlanRepo;
 
-//    public WeekPlan getWeekPlan(String idTrainer, String idMentee, int numberOfWeek){
-//        return trainerRepo
-//                .getTrainerMenteeById(idTrainer,idMentee)
-//                .getWeekPlans()
-//                .stream()
-//                .filter(numOfWeek -> numOfWeek.equals(numberOfWeek))
-//                .findFirst()
-//                .orElseThrow(() -> new ResourceNotFoundException("Not found traner: " + idTrainer + " mentee: "+idMentee+" numOfWeek: "+numberOfWeek));
-//    }
-
     public Collection<WeekPlan> getWeekPlans(String idMentee){
         return weekPlanRepo.getWeelPlans(idMentee);
     }

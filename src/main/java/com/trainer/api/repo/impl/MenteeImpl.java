@@ -3,6 +3,7 @@ package com.trainer.api.repo.impl;
 import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.manager.MenteeManager;
 import com.trainer.api.model.user.Mentee;
+import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.MenteeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,5 +37,15 @@ public class MenteeImpl implements MenteeRepo {
         return menteeManager
                 .findById(idMentee)
                 .orElseThrow(() -> new ResourceNotFoundException("id mentee: "+idMentee));
+    }
+
+    @Override
+    public Mentee assignTrainer(String idMentee, Trainer trainer) {
+        return menteeManager
+                .findById(idMentee)
+                .map(mentee -> {
+                    mentee.setTrainers(mentee.addTrainer(trainer));
+                    return menteeManager.save(mentee);
+                }).orElseThrow(() -> new ResourceNotFoundException("add trainer to list"));
     }
 }

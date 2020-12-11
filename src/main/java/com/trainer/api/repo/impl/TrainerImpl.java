@@ -50,13 +50,6 @@ public class TrainerImpl implements TrainerRepo {
     }
 
     @Override
-    public Profile getProfile(String idTrainer){
-        return trainerManager
-                .findById(idTrainer)
-                .orElseThrow(() -> new ResourceNotFoundException("id trainner: "+idTrainer)).getProfile();
-    }
-
-    @Override
     public Trainer assignMentee(String idTrainer, Mentee mentee){
         return trainerManager.findById(idTrainer).map(trainer -> {
             trainer.setMentees(trainer.addMentee(mentee));

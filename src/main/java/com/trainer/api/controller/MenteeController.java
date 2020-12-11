@@ -1,6 +1,7 @@
 package com.trainer.api.controller;
 
 import com.trainer.api.dto.MenteeDTO;
+import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.plan.WeekPlan;
 import com.trainer.api.model.user.Mentee;
@@ -31,8 +32,8 @@ public class MenteeController {
     }
 
     @PatchMapping
-    public MenteeDTO assignTraier(@RequestHeader(value = "mid")  String idMentee,
-                                      @RequestHeader(value = "tid") String idTrainer){
+    public Collection<TrainerDTO> assignTraier(@RequestHeader(value = "mid")  String idMentee,
+                                               @RequestHeader(value = "tid") String idTrainer){
         return menteeService.assignTrainer(idMentee,idTrainer);
     }
 

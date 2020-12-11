@@ -13,5 +13,4 @@ public interface TrainerRepo {
     List<Mentee> getTrainerMentees(String id);
     Mentee getTrainerMenteeById(String trainnerID, String menteeID);
     Trainer assignMentee(String idTrainer, Mentee mentee);
-    Profile getProfile(String idTrainer);
 }

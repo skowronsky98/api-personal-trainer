@@ -16,6 +16,7 @@ public class Mapper {
         modelMapper.addMappings(new PropertyMap<Mentee, MenteeDTO>() {
             @Override
             protected void configure() {
+                map().set_id(source.get_id());
                 map().setEmail(source.getEmail());
                 map().setProfile(source.getProfile());
                 map().setTarget(source.getTarget());
@@ -34,6 +35,7 @@ public class Mapper {
         modelMapper.addMappings(new PropertyMap<Trainer, TrainerDTO>() {
             @Override
             protected void configure(){
+                map().set_id(source.get_id());
                 map().setEmail(source.getEmail());
                 map().setProfile(source.getProfile());
                 map().setAdvertisment(source.getAdvertisment());

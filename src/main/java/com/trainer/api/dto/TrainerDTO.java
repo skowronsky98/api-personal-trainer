@@ -13,6 +13,7 @@ import java.util.List;
 
 public class TrainerDTO {
 
+    private String _id;
     private String email;
     private Profile profile;
 
@@ -21,6 +22,14 @@ public class TrainerDTO {
     private Advertisment advertisment;
 
     private List<Mentee> mentees;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public List<Mentee> getMentees() {
         return mentees;

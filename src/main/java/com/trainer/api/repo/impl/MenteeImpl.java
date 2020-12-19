@@ -39,13 +39,5 @@ public class MenteeImpl implements MenteeRepo {
                 .orElseThrow(() -> new ResourceNotFoundException("id mentee: "+idMentee));
     }
 
-    @Override
-    public Mentee assignTrainer(String idMentee, Trainer trainer) {
-        return menteeManager
-                .findById(idMentee)
-                .map(mentee -> {
-                    mentee.setTrainers(mentee.addTrainer(trainer));
-                    return menteeManager.save(mentee);
-                }).orElseThrow(() -> new ResourceNotFoundException("add trainer to list"));
-    }
+
 }

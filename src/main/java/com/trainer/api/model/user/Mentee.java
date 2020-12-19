@@ -25,6 +25,8 @@ public class Mentee {
     private String target;
     private Dimensions dimensions;
     private Collection<Raport> raports;
+
+    @DBRef(lazy = true)
     private Collection<WeekPlan> weekPlans;
 
     @DBRef(lazy = true)
@@ -50,6 +52,8 @@ public class Mentee {
         this.weekPlans = weekPlans;
         this.trainers = trainers;
     }
+
+
 
     public String get_id() {
         return _id;

@@ -1,19 +1,36 @@
 package com.trainer.api.model.plan;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Collection;
 
+@Document(collection = "dailyplan")
 public class DailyPlan {
+    @Id
+    private String _id;
     private int numberOfDay;
+    @DBRef(lazy = true)
     private Collection<MealPlan> mealPlans;
     private String bio;
 
     public DailyPlan() {
     }
 
-    public DailyPlan(int numberOfDay, Collection<MealPlan> mealPlans, String bio) {
+    public DailyPlan(String _id, int numberOfDay, Collection<MealPlan> mealPlans, String bio) {
+        this._id = _id;
         this.numberOfDay = numberOfDay;
         this.mealPlans = mealPlans;
         this.bio = bio;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public int getNumberOfDay() {

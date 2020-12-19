@@ -12,6 +12,7 @@ import java.util.List;
 
 public class MenteeDTO {
 
+    private String _id;
     private String email;
     private Profile profile;
     private String target;
@@ -22,6 +23,13 @@ public class MenteeDTO {
     private Collection<Raport> raports;
     private Collection<WeekPlan> weekPlans;
 
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public List<Trainer> getTrainers() {
         return trainers;

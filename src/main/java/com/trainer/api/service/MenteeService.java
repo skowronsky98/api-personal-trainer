@@ -50,17 +50,7 @@ public class MenteeService {
         return profileRepo.setMenteeProfile(idMentee,profile);
     }
 
-    public Collection<TrainerDTO> assignTrainer(String idMentee, String idTrainer){
-        Trainer trainer = trainerRepo.getTrainerById(idTrainer);
-        return menteeRepo
-                .assignTrainer(idMentee,trainer)
-                .getTrainers()
-                .stream()
-                .map( t -> mapper
-                        .getTrainerMapper()
-                        .map(t,TrainerDTO.class))
-                .collect(Collectors.toList());
-    }
+
 
     //com
     public Collection<MenteeDTO> getAllMenteeDTO() {

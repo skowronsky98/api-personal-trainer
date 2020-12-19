@@ -1,6 +1,5 @@
 package com.trainer.api.model;
 
-
 public class Meal {
 
     private Long idMeal;

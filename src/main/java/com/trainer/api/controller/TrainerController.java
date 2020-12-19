@@ -2,15 +2,19 @@ package com.trainer.api.controller;
 
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
+import com.trainer.api.model.Invite;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.plan.WeekPlan;
 import com.trainer.api.model.user.Trainer;
+import com.trainer.api.repo.InviteRepo;
 import com.trainer.api.service.PlanService;
+import com.trainer.api.service.SubscribeService;
 import com.trainer.api.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/trainer")
@@ -21,6 +25,9 @@ public class TrainerController {
 
     @Autowired
     private PlanService planService;
+
+    @Autowired
+    private SubscribeService subscribeService;
 
     @GetMapping
     public Collection<TrainerDTO> getTrainers(){
@@ -37,6 +44,11 @@ public class TrainerController {
             @RequestHeader(value = "mid")  String idMentee
             ,@RequestHeader(value = "tid") String idTrainer){
         return trainerService.getTrainerMenteeById(idTrainer,idMentee);
+    }
+
+    @GetMapping("/invites")
+    public List<Invite> getInvites(String idTrainer){
+        return subscribeService.getInvites(idTrainer);
     }
 
 //    @GetMapping("/weekplan")
@@ -57,11 +69,7 @@ public class TrainerController {
         return trainerService.assignMentee(idMentee,idTrainer);
     }
 
-    @PostMapping("/weekplan")
-    public Collection<WeekPlan> addWeekPlan(@RequestHeader(value = "mid") String idMentee,
-                                            @RequestBody WeekPlan weekPlan){
-        return planService.addWeekPlan(idMentee,weekPlan);
-    }
+
 
     @GetMapping("/profile")
     public Profile getProfile( @RequestHeader(value = "id") String idTrainer){

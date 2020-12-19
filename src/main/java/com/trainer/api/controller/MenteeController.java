@@ -2,11 +2,13 @@ package com.trainer.api.controller;
 
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
+import com.trainer.api.model.Invite;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.plan.WeekPlan;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.service.MenteeService;
 import com.trainer.api.service.PlanService;
+import com.trainer.api.service.SubscribeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,9 @@ public class MenteeController {
     @Autowired
     private PlanService planService;
 
+    @Autowired
+    private SubscribeService subscribeService;
+
     @GetMapping
     public Collection<MenteeDTO> getAllMentee(){
         return menteeService.getAllMenteeDTO();
@@ -32,9 +37,9 @@ public class MenteeController {
     }
 
     @PatchMapping
-    public Collection<TrainerDTO> assignTraier(@RequestHeader(value = "mid")  String idMentee,
-                                               @RequestHeader(value = "tid") String idTrainer){
-        return menteeService.assignTrainer(idMentee,idTrainer);
+    public Collection<Invite> subscribe(@RequestHeader(value = "mid")  String idMentee,
+                                        @RequestHeader(value = "tid") String idTrainer){
+        return subscribeService.subscribe(idMentee,idTrainer);
     }
 
     @GetMapping("/weekplans")

@@ -1,15 +1,14 @@
 package com.trainer.api.model.user;
 
-import com.trainer.api.model.Advertisment;
-import com.trainer.api.model.Dimensions;
-import com.trainer.api.model.Meal;
-import com.trainer.api.model.Profile;
+import com.trainer.api.model.*;
+import com.trainer.api.model.plan.WeekPlan;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Document(collection = "trainer")
@@ -23,10 +22,14 @@ public class Trainer {
     private Profile profile;
     private Dimensions dimensions;
     private Advertisment advertisment;
+    private List<Invite> invites;
     private List<Meal> meals;
 
     @DBRef(lazy = true)
     private List<Mentee> mentees;
+
+    @DBRef(lazy = true)
+    private Collection<WeekPlan> weekPlans;
 
     public Trainer() {
     }
@@ -37,7 +40,8 @@ public class Trainer {
                    Dimensions dimensions,
                    Advertisment advertisment,
                    List<Meal> meals,
-                   List<Mentee> mentees) {
+                   List<Mentee> mentees,
+                   List<Invite> invites) {
         this._id = _id;
         this.email = email;
         this.profile = profile;
@@ -45,6 +49,15 @@ public class Trainer {
         this.advertisment = advertisment;
         this.meals = meals;
         this.mentees = mentees;
+        this.invites = invites;
+    }
+
+    public Collection<WeekPlan> getWeekPlans() {
+        return weekPlans;
+    }
+
+    public void setWeekPlans(Collection<WeekPlan> weekPlans) {
+        this.weekPlans = weekPlans;
     }
 
     public String get_id() {
@@ -110,4 +123,18 @@ public class Trainer {
     }
 
 
+    public List<Invite> getInvites() {
+        return invites;
+    }
+
+    public void setInvites(List<Invite> invite) {
+        this.invites = invite;
+    }
+
+    public List<Invite> addInvitation(Invite invitation){
+        if(invites == null)
+            invites = new ArrayList<>();
+        invites.add(invitation);
+        return invites;
+    }
 }

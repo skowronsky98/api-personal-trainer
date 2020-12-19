@@ -12,6 +12,4 @@ public interface MenteeRepo {
     Collection<Mentee> getAllMentee();
     Mentee addMentee(Mentee mentee);
     Mentee getMentee(String idMentee);
-    Mentee assignTrainer(String idMentee, Trainer trainer);
-
 }

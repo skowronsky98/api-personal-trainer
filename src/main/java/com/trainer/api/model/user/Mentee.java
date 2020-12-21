@@ -30,7 +30,7 @@ public class Mentee {
     private Collection<WeekPlan> weekPlans;
 
     @DBRef(lazy = true)
-    private List<Trainer> trainers;
+    private List<Trainer> assignedTainers;
 
     public Mentee() {
     }
@@ -42,7 +42,7 @@ public class Mentee {
                   Dimensions dimensions,
                   Collection<Raport> raports,
                   Collection<WeekPlan> weekPlans,
-                  List<Trainer> trainers) {
+                  List<Trainer> assignedTainers) {
         this._id = _id;
         this.email = email;
         this.profile = profile;
@@ -50,7 +50,7 @@ public class Mentee {
         this.dimensions = dimensions;
         this.raports = raports;
         this.weekPlans = weekPlans;
-        this.trainers = trainers;
+        this.assignedTainers = assignedTainers;
     }
 
 
@@ -111,18 +111,18 @@ public class Mentee {
         this.weekPlans = weekPlans;
     }
 
-    public List<Trainer> getTrainers() {
-        return trainers == null ? new ArrayList<>() : trainers;
+    public List<Trainer> getAssignedTainers() {
+        return assignedTainers == null ? new ArrayList<>() : assignedTainers;
     }
 
     public List<Trainer> addTrainer(Trainer trainer){
-        if(trainers == null)
-            trainers = new ArrayList<>();
-        trainers.add(trainer);
-        return trainers;
+        if(assignedTainers == null)
+            assignedTainers = new ArrayList<>();
+        assignedTainers.add(trainer);
+        return assignedTainers;
     }
 
-    public void setTrainers(List<Trainer> trainers) {
-        this.trainers = trainers;
+    public void setAssignedTainers(List<Trainer> assignedTainers) {
+        this.assignedTainers = assignedTainers;
     }
 }

@@ -1,13 +1,7 @@
 package com.trainer.api.repo.impl;
 
-import com.trainer.api.exception.ResourceNotFoundException;
-import com.trainer.api.manager.MenteeManager;
 import com.trainer.api.model.plan.DailyPlan;
-import com.trainer.api.model.plan.WeekPlan;
-import com.trainer.api.model.user.Mentee;
 import com.trainer.api.repo.DailyPlanRepo;
-import com.trainer.api.repo.WeekPlanRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;

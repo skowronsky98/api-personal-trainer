@@ -10,6 +10,7 @@ import java.util.Collection;
 public class DailyPlan {
     @Id
     private String _id;
+    private String name;
     private int numberOfDay;
     @DBRef(lazy = true)
     private Collection<MealPlan> mealPlans;
@@ -18,8 +19,13 @@ public class DailyPlan {
     public DailyPlan() {
     }
 
-    public DailyPlan(String _id, int numberOfDay, Collection<MealPlan> mealPlans, String bio) {
+    public DailyPlan(String _id,
+                     String name,
+                     int numberOfDay,
+                     Collection<MealPlan> mealPlans,
+                     String bio) {
         this._id = _id;
+        this.name = name;
         this.numberOfDay = numberOfDay;
         this.mealPlans = mealPlans;
         this.bio = bio;
@@ -31,6 +37,14 @@ public class DailyPlan {
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getNumberOfDay() {

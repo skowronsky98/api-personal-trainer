@@ -1,6 +1,8 @@
 package com.trainer.api.model.user;
 
 import com.trainer.api.model.*;
+import com.trainer.api.model.plan.DailyPlan;
+import com.trainer.api.model.plan.MealPlan;
 import com.trainer.api.model.plan.WeekPlan;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -31,6 +33,12 @@ public class Trainer {
     @DBRef(lazy = true)
     private Collection<WeekPlan> weekPlans;
 
+    @DBRef(lazy = true)
+    private Collection<DailyPlan> dailyPlans;
+
+    @DBRef(lazy = true)
+    private Collection<MealPlan> mealPlans;
+
     public Trainer() {
     }
 
@@ -39,18 +47,25 @@ public class Trainer {
                    Profile profile,
                    Dimensions dimensions,
                    Advertisment advertisment,
+                   List<Invite> invites,
                    List<Meal> meals,
                    List<Mentee> mentees,
-                   List<Invite> invites) {
+                   Collection<WeekPlan> weekPlans,
+                   Collection<DailyPlan> dailyPlans,
+                   Collection<MealPlan> mealPlans) {
         this._id = _id;
         this.email = email;
         this.profile = profile;
         this.dimensions = dimensions;
         this.advertisment = advertisment;
+        this.invites = invites;
         this.meals = meals;
         this.mentees = mentees;
-        this.invites = invites;
+        this.weekPlans = weekPlans;
+        this.dailyPlans = dailyPlans;
+        this.mealPlans = mealPlans;
     }
+
 
     public Collection<WeekPlan> getWeekPlans() {
         return weekPlans;
@@ -136,5 +151,21 @@ public class Trainer {
             invites = new ArrayList<>();
         invites.add(invitation);
         return invites;
+    }
+
+    public Collection<DailyPlan> getDailyPlans() {
+        return dailyPlans;
+    }
+
+    public void setDailyPlans(Collection<DailyPlan> dailyPlans) {
+        this.dailyPlans = dailyPlans;
+    }
+
+    public Collection<MealPlan> getMealPlans() {
+        return mealPlans;
+    }
+
+    public void setMealPlans(Collection<MealPlan> mealPlans) {
+        this.mealPlans = mealPlans;
     }
 }

@@ -22,6 +22,7 @@ public class SubscribeService {
     @Autowired
     private InviteRepo inviteRepo;
 
+
     @Autowired
     private Mapper mapper;
 
@@ -32,4 +33,6 @@ public class SubscribeService {
     public List<Invite> getInvites(String idTrainer) {
         return inviteRepo.getInvites(idTrainer);
     }
+
+
 }

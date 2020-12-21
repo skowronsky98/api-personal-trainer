@@ -20,7 +20,6 @@ public class WeekPlan {
     @DBRef(lazy = true)
     private Trainer trainer;
 
-
     public WeekPlan(String _id, Trainer trainer, int numberOfWeek, Collection<DailyPlan> dailyPlans) {
         this._id = _id;
         this.trainer = trainer;

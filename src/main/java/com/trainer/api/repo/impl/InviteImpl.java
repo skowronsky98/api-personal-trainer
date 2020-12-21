@@ -8,9 +8,11 @@ import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.InviteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class InviteImpl implements InviteRepo {
 
     @Autowired
@@ -41,5 +43,18 @@ public class InviteImpl implements InviteRepo {
                 .orElseThrow(() -> new ResourceNotFoundException("trainer not found id: "+idTrainer))
                 .getInvites();
 
+    }
+
+    @Override
+    public List<Invite> delInvite(Invite invite, String idTrainer) {
+        Trainer trainer = trainerManager
+                .findById(idTrainer)
+                .orElseThrow(() -> new ResourceNotFoundException("trainer not found id: "+idTrainer));
+
+        List<Invite> invites =  trainer.getInvites();
+        invites.remove(invite);
+        trainerManager.save(trainer);
+
+        return invites;
     }
 }

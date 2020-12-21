@@ -47,7 +47,7 @@ public class TrainerController {
     }
 
     @GetMapping("/invites")
-    public List<Invite> getInvites(String idTrainer){
+    public List<Invite> getInvites(@RequestHeader(value = "id") String idTrainer){
         return subscribeService.getInvites(idTrainer);
     }
 

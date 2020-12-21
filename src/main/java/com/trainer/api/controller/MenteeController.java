@@ -36,7 +36,7 @@ public class MenteeController {
         return menteeService.addMentee(mentee);
     }
 
-    @PatchMapping
+    @PostMapping("/invite")
     public Collection<Invite> subscribe(@RequestHeader(value = "mid")  String idMentee,
                                         @RequestHeader(value = "tid") String idTrainer){
         return subscribeService.subscribe(idMentee,idTrainer);

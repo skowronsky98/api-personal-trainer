@@ -27,4 +27,9 @@ public class WeekPlanImpl implements WeekPlanRepo {
     public WeekPlan getWeekPlan(String idMentee, int numberOfWeek) {
         return null;
     }
+
+    @Override
+    public void deleteWeekPlan(WeekPlan weekPlan) {
+        weekPlanManager.delete(weekPlan);
+    }
 }

@@ -8,14 +8,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class MealPlan {
     @Id
     private String _id;
+    private String name;
     private Meal meal;
     private String type;
 
     public MealPlan() {
     }
 
-    public MealPlan(String _id, Meal meal, String type) {
+    public MealPlan(String _id, String name, Meal meal, String type) {
         this._id = _id;
+        this.name = name;
         this.meal = meal;
         this.type = type;
     }
@@ -26,6 +28,14 @@ public class MealPlan {
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Meal getMeal() {

@@ -21,7 +21,7 @@ public class Mapper {
                 map().setProfile(source.getProfile());
                 map().setTarget(source.getTarget());
                 map().setDimensions(source.getDimensions());
-                map().setTrainers(source.getTrainers());
+                map().setTrainers(source.getAssignedTainers());
                 map().setWeekPlans(source.getWeekPlans());
             }
         });

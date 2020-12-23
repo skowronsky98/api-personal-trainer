@@ -31,6 +31,11 @@ public class MealPlanImpl implements MealPlanRepo {
     }
 
     @Override
+    public void deleteMealPlanById(String idMealPlan) {
+        mealPlanManager.deleteById(idMealPlan);
+    }
+
+    @Override
     public MealPlan createMealPlan(MealPlan mealPlan, String idTrainer) {
         Trainer trainer = trainerRepo.getTrainerById(idTrainer);
         MealPlan mP = mealPlanManager.save(mealPlan);

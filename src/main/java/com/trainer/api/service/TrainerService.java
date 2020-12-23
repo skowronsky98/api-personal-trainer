@@ -3,9 +3,11 @@ package com.trainer.api.service;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.mapper.Mapper;
+import com.trainer.api.model.Meal;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
+import com.trainer.api.repo.MealRepo;
 import com.trainer.api.repo.MenteeRepo;
 import com.trainer.api.repo.ProfileRepo;
 import com.trainer.api.repo.TrainerRepo;
@@ -26,6 +28,9 @@ public class TrainerService{
 
     @Autowired
     private ProfileRepo profileRepo;
+
+    @Autowired
+    private MealRepo mealRepo;
 
     @Autowired
     private Mapper mapper;
@@ -79,5 +84,9 @@ public class TrainerService{
         return mapper
                 .getMenteeMapper()
                 .map(trainerRepo.getTrainerMenteeById(idTrainer,idMentee),MenteeDTO.class);
+    }
+
+    public Meal addMeal(Meal meal,String idTrainer){
+        return mealRepo.addMeal(meal, idTrainer);
     }
 }

@@ -1,6 +1,8 @@
 package com.trainer.api.controller;
 
+import com.trainer.api.model.Meal;
 import com.trainer.api.model.plan.DailyPlan;
+import com.trainer.api.model.plan.MealPlan;
 import com.trainer.api.model.plan.WeekPlan;
 import com.trainer.api.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,35 @@ public class PlanController {
                                       @RequestHeader(value = "tid") String idTrainer){
         return planService.createDailyPlan(dailyPlan,idTrainer);
     }
+
+    @DeleteMapping("/dailyPlan")
+    public Boolean deleteDailyPlan(@RequestHeader(value = "idd") String idDailyPlan){
+        return planService.deleteDailyPlan(idDailyPlan);
+    }
+
+    @PostMapping("/mealplan")
+    public MealPlan createMealPlan(@RequestBody MealPlan mealPlan,
+                                   @RequestHeader(value = "tid") String idTrainer){
+        return planService.createMealPlan(mealPlan,idTrainer);
+    }
+
+    @PatchMapping("/detach/mealplan")
+    public DailyPlan detachMealPlan(@RequestHeader(value = "idd") String idDailyPlan,
+                                    @RequestHeader(value = "idm") String idMealPlan){
+        return planService.detachMealPlan(idDailyPlan,idMealPlan);
+    }
+
+    @PatchMapping("/mealplan")
+    public DailyPlan attachMealPlan(@RequestHeader(value = "idd") String idDailyPlan,
+                                    @RequestHeader(value = "idm") String idMealPlan){
+        return planService.attachMealPlan(idDailyPlan, idMealPlan);
+    }
+
+    @DeleteMapping("/mealplan")
+    public Boolean deleteMealPlan(@RequestHeader(value = "idm") String idMealPlan){
+        return planService.deleteMealPlan(idMealPlan);
+    }
+
 
     @GetMapping("/weekplans")
     public Collection<WeekPlan> getWeekPlans(){

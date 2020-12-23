@@ -146,6 +146,12 @@ public class Trainer {
         this.invites = invite;
     }
 
+    public void addMeal(Meal meal){
+        if (meals == null)
+            meals = new ArrayList<>();
+        meals.add(meal);
+    }
+
     public List<Invite> addInvitation(Invite invitation){
         if(invites == null)
             invites = new ArrayList<>();

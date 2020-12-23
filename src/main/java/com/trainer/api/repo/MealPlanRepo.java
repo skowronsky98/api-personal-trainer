@@ -7,4 +7,5 @@ public interface MealPlanRepo {
     MealPlan createMealPlan(MealPlan mealPlan, String idTrainer);
     void deleteMealPlan(MealPlan mealPlan);
     MealPlan getMealPlanById(String idMealPlan);
+    void deleteMealPlanById(String idMealPlan);
 }

@@ -3,7 +3,6 @@ package com.trainer.api.repo.impl;
 import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.manager.MenteeManager;
 import com.trainer.api.model.user.Mentee;
-import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.MenteeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +20,7 @@ public class MenteeImpl implements MenteeRepo {
     }
 
     @Override
-    public Mentee addMentee(Mentee mentee){
+    public Mentee saveMentee(Mentee mentee){
         return menteeManager.save(mentee);
     }
 

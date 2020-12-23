@@ -153,6 +153,24 @@ public class Trainer {
         return invites;
     }
 
+    public void addDailyPlan(DailyPlan dailyPlan){
+        if(dailyPlans == null)
+            dailyPlans = new ArrayList<>();
+        dailyPlans.add(dailyPlan);
+    }
+
+    public void addWeekPlan(WeekPlan weekPlan){
+        if(weekPlans == null)
+            weekPlans = new ArrayList<>();
+        weekPlans.add(weekPlan);
+    }
+
+    public void addMealPlan(MealPlan mealPlan){
+        if(mealPlans == null)
+            mealPlans = new ArrayList<>();
+        mealPlans.add(mealPlan);
+    }
+
     public Collection<DailyPlan> getDailyPlans() {
         return dailyPlans;
     }

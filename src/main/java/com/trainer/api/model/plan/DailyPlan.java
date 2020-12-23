@@ -1,9 +1,12 @@
 package com.trainer.api.model.plan;
 
+import com.trainer.api.model.Meal;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Document(collection = "dailyplan")
@@ -25,6 +28,18 @@ public class DailyPlan {
                      Collection<MealPlan> mealPlans,
                      String bio) {
         this._id = _id;
+        this.name = name;
+        this.numberOfDay = numberOfDay;
+        this.mealPlans = mealPlans;
+        this.bio = bio;
+    }
+
+    @PersistenceConstructor
+    public DailyPlan( String name,
+                      int numberOfDay,
+                      Collection<MealPlan> mealPlans,
+                      String bio){
+
         this.name = name;
         this.numberOfDay = numberOfDay;
         this.mealPlans = mealPlans;
@@ -61,6 +76,12 @@ public class DailyPlan {
 
     public void setMealPlans(Collection<MealPlan> mealPlans) {
         this.mealPlans = mealPlans;
+    }
+
+    public void addMealPlan(MealPlan mealPlan){
+        if(mealPlans == null)
+            mealPlans = new ArrayList<>();
+        mealPlans.add(mealPlan);
     }
 
     public String getBio() {

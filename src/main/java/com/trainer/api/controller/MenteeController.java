@@ -42,10 +42,7 @@ public class MenteeController {
         return subscribeService.subscribe(idMentee,idTrainer);
     }
 
-    @GetMapping("/weekplans")
-    public Collection<WeekPlan> getWeekPlans(@RequestHeader(value = "id")  String idMentee){
-        return planService.getWeekPlans(idMentee);
-    }
+
 
     @GetMapping("/profile")
     public Profile getProfile(@RequestHeader(value = "id")  String idMentee){

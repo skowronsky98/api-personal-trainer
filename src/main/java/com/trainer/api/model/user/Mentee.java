@@ -122,6 +122,12 @@ public class Mentee {
         return assignedTainers;
     }
 
+    public void addWeekPlan(WeekPlan weekPlan){
+        if (weekPlans == null)
+            weekPlans = new ArrayList<>();
+        weekPlans.add(weekPlan);
+    }
+
     public void setAssignedTainers(List<Trainer> assignedTainers) {
         this.assignedTainers = assignedTainers;
     }

@@ -2,6 +2,7 @@ package com.trainer.api.model.plan;
 
 import com.trainer.api.model.Meal;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "mealplan")
@@ -17,6 +18,13 @@ public class MealPlan {
 
     public MealPlan(String _id, String name, Meal meal, String type) {
         this._id = _id;
+        this.name = name;
+        this.meal = meal;
+        this.type = type;
+    }
+
+    @PersistenceConstructor
+    public MealPlan(String name, Meal meal, String type){
         this.name = name;
         this.meal = meal;
         this.type = type;

@@ -1,16 +1,18 @@
 package com.trainer.api.service;
 
+import com.trainer.api.model.plan.DailyPlan;
 import com.trainer.api.model.plan.WeekPlan;
-import com.trainer.api.model.user.Mentee;
-import com.trainer.api.model.user.Trainer;
+import com.trainer.api.repo.DailyPlanRepo;
 import com.trainer.api.repo.MenteeRepo;
 import com.trainer.api.repo.TrainerRepo;
 import com.trainer.api.repo.WeekPlanRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class PlanService {
@@ -23,35 +25,38 @@ public class PlanService {
     @Autowired
     private WeekPlanRepo weekPlanRepo;
 
-    public Collection<WeekPlan> getWeekPlans(String idMentee){
-        return weekPlanRepo.getWeekPlans(idMentee);
+    @Autowired
+    private DailyPlanRepo dailyPlanRepo;
+
+    public Collection<WeekPlan> getWeekPlans(){
+        return weekPlanRepo.getWeekPlans();
     }
 
-    public WeekPlan addWeekPlan(String idTrainer, String idMentee, WeekPlan weekPlan){
-        Trainer trainer = trainerRepo.getTrainerById(idTrainer);
-        Mentee mentee = trainerRepo.getTrainerMenteeById(idTrainer,idMentee);
+    public List<WeekPlan> createSubscriptionContent(String idTrainer, String idMentee, int amountOfWeeks){
+        List<WeekPlan> subscritptionContent = new ArrayList<>();
 
-        weekPlan.setTrainer(trainer);
-
-        WeekPlan wp = weekPlanRepo.addWeekPlan(weekPlan);
-
-        Collection<WeekPlan> trainerWeekPlans = trainer.getWeekPlans();
-        Collection<WeekPlan> menteeWeekPlans = mentee.getWeekPlans();
-        if(trainerWeekPlans == null)
-            trainerWeekPlans = new ArrayList<>();
-
-        if(menteeWeekPlans == null)
-            menteeWeekPlans = new ArrayList<>();
-
-        trainerWeekPlans.add(wp);
-        trainer.setWeekPlans(trainerWeekPlans);
-        trainerRepo.addTrainer(trainer);
-
-        menteeWeekPlans.add(wp);
-        mentee.setWeekPlans(menteeWeekPlans);
-        menteeRepo.addMentee(mentee);
-
-        return wp;
+        for (int i = 0; i < amountOfWeeks; i++) {
+            WeekPlan weekPlan = new WeekPlan(i+1);
+            subscritptionContent.add(weekPlanRepo.createWeekPlan(idTrainer, idMentee, weekPlan));
+        }
+        return subscritptionContent;
     }
 
+    public DailyPlan createDailyPlan(DailyPlan dailyPlan, String idTrainer){
+        return dailyPlanRepo.createDailyPlan(dailyPlan,idTrainer);
+    }
+
+    public Boolean deleteWeekPlan(String idWeekPlan){
+        weekPlanRepo.deleteWeekPlan(idWeekPlan);
+        //TODO check if exist
+        return true;
+    }
+
+    public WeekPlan attachDailyPlan(String idWeekPlan, String idDailyPlan){
+        return weekPlanRepo.attachDailyPlan(idWeekPlan,idDailyPlan);
+    }
+
+    public WeekPlan detachDailyPlan(String idWeekPlan, String idDailyPlan){
+        return weekPlanRepo.detachDailyPlan(idWeekPlan, idDailyPlan);
+    }
 }

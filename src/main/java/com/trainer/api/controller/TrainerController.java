@@ -4,9 +4,7 @@ import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.model.Invite;
 import com.trainer.api.model.Profile;
-import com.trainer.api.model.plan.WeekPlan;
 import com.trainer.api.model.user.Trainer;
-import com.trainer.api.repo.InviteRepo;
 import com.trainer.api.service.PlanService;
 import com.trainer.api.service.SubscribeService;
 import com.trainer.api.service.TrainerService;
@@ -51,12 +49,6 @@ public class TrainerController {
         return subscribeService.getInvites(idTrainer);
     }
 
-//    @GetMapping("/weekplan")
-//    public WeekPlan getWeekPlan(  @RequestHeader(value = "mid")  String idMentee
-//            ,@RequestHeader(value = "tid") String idTrainer
-//            ,@RequestHeader(value = "numOfWeek") int numberOfWeek){
-//        return planService.ge(idTrainer,idMentee,numberOfWeek);
-//    }
 
     @PostMapping
     public Trainer addTrainer(@RequestBody Trainer trainer){
@@ -68,8 +60,6 @@ public class TrainerController {
                                @RequestHeader(value = "tid") String idTrainer){
         return trainerService.assignMentee(idMentee,idTrainer);
     }
-
-
 
     @GetMapping("/profile")
     public Profile getProfile( @RequestHeader(value = "id") String idTrainer){

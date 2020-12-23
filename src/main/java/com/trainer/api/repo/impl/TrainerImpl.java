@@ -2,7 +2,6 @@ package com.trainer.api.repo.impl;
 
 import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.manager.TrainerManager;
-import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.TrainerRepo;
@@ -19,7 +18,7 @@ public class TrainerImpl implements TrainerRepo {
 
 
     @Override
-    public Trainer addTrainer(Trainer trainer){
+    public Trainer saveTrainer(Trainer trainer){
         return trainerManager.save(trainer);
     }
 

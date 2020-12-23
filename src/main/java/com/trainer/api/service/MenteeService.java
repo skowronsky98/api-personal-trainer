@@ -1,13 +1,11 @@
 package com.trainer.api.service;
 
 
-import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.model.Profile;
 import com.trainer.api.repo.MenteeRepo;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.mapper.Mapper;
 import com.trainer.api.model.user.Mentee;
-import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.ProfileRepo;
 import com.trainer.api.repo.TrainerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MenteeService {
@@ -39,7 +35,7 @@ public class MenteeService {
     public MenteeDTO addMentee(Mentee mentee){
         return mapper
                 .getMenteeMapper()
-                .map(menteeRepo.addMentee(mentee),MenteeDTO.class);
+                .map(menteeRepo.saveMentee(mentee),MenteeDTO.class);
     }
 
     public Profile getProfile(String idMentee){

@@ -2,10 +2,11 @@ package com.trainer.api.repo;
 
 import com.trainer.api.model.plan.DailyPlan;
 
-import java.util.Collection;
-
 public interface DailyPlanRepo {
-    DailyPlan addDailyPlan(String idMentee, DailyPlan dailyPlan, int numberOfWeek);
-    DailyPlan getDailyPlan(String idMentee, int numberOfWeek, int numberOfDay);
-    Collection<DailyPlan> getDailyPlans(String idMentee, int numberOfWeek);
+    DailyPlan createDailyPlan(DailyPlan dailyPlan, String idTrainer);
+    void deleteDailyPlan(String idDailyPlan);
+    DailyPlan getDailyPlanById(String idDailyPlan);
+    DailyPlan attachMealPlan(String idDailyPlan, String idMealPlan);
+    DailyPlan detachMealPlan(String idDailyPlan, String idMealPlan);
+
 }

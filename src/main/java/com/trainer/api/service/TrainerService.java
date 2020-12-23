@@ -41,7 +41,7 @@ public class TrainerService{
     }
 
     public Trainer addTrainer(Trainer trainer){
-        return trainerRepo.addTrainer(trainer);
+        return trainerRepo.saveTrainer(trainer);
     }
 
     public Profile getProfile(String idTrainer){

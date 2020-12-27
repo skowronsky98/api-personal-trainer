@@ -1,14 +1,11 @@
 package com.trainer.api.service;
 
-import com.sun.jdi.event.StepEvent;
-import com.trainer.api.model.Meal;
 import com.trainer.api.model.plan.DailyPlan;
 import com.trainer.api.model.plan.MealPlan;
 import com.trainer.api.model.plan.WeekPlan;
 import com.trainer.api.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.ArrayList;
 import java.util.Collection;

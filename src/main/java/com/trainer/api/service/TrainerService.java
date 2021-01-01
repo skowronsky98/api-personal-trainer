@@ -1,5 +1,6 @@
 package com.trainer.api.service;
 
+import com.trainer.api.dto.AdvertismentDTO;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.mapper.Mapper;
@@ -55,6 +56,14 @@ public class TrainerService{
 
     public Profile setProfile(String idTrainer, Profile profile){
         return profileRepo.setTrainerProfile(idTrainer,profile);
+    }
+
+    public List<AdvertismentDTO> getActiveAdvertisments(){
+        return trainerRepo
+                .getActiveAdvertisments()
+                .stream()
+                .map(t -> mapper.getAdvertismentMapper().map(t, AdvertismentDTO.class))
+                .collect(Collectors.toList());
     }
 
     public Collection<MenteeDTO> assignMentee(String idMentee, String idTrainer){

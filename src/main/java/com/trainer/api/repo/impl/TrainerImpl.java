@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class TrainerImpl implements TrainerRepo {
@@ -55,5 +56,13 @@ public class TrainerImpl implements TrainerRepo {
             return trainerManager.save(trainer);
         }).orElseThrow(() -> new ResourceNotFoundException("add metee to list"));
     }
-    
+
+    @Override
+    public List<Trainer> getActiveAdvertisments() {
+        return trainerManager.findAll()
+                .stream()
+                .filter(trainer -> trainer.getAdvertisment().getActive())
+                .collect(Collectors.toList());
+    }
+
 }

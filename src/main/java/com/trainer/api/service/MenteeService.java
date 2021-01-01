@@ -1,6 +1,8 @@
 package com.trainer.api.service;
 
 
+import com.trainer.api.dto.TrainerDTO;
+import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.Profile;
 import com.trainer.api.repo.MenteeRepo;
 import com.trainer.api.dto.MenteeDTO;
@@ -46,6 +48,9 @@ public class MenteeService {
         return profileRepo.setMenteeProfile(idMentee,profile);
     }
 
+    public Collection <Advertisment> getAdvertisments(){
+        return null;
+    }
 
 
     //com

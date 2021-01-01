@@ -1,7 +1,9 @@
 package com.trainer.api.mapper;
 
+import com.trainer.api.dto.AdvertismentDTO;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
+import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
 import org.modelmapper.ModelMapper;
@@ -47,6 +49,20 @@ public class Mapper {
         return modelMapper;
     }
 
+    public ModelMapper getAdvertismentMapper(){
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.addMappings(new PropertyMap<Trainer, AdvertismentDTO>() {
+            @Override
+            protected void configure(){
+                map().set_id(source.get_id());
+                map().setProfile(source.getProfile());
+                map().setActive(source.getAdvertisment().getActive());
+                map().setPrice(source.getAdvertisment().getPrice());
+                map().setDescription(source.getAdvertisment().getDescription());
+            }
+        });
+        return modelMapper;
+    }
 
 
 }

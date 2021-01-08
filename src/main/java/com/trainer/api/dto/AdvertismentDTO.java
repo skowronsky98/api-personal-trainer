@@ -4,7 +4,12 @@ import com.trainer.api.model.Profile;
 
 public class AdvertismentDTO {
     private String _id;
-    private Profile profile;
+
+    private String firstname;
+    private String surname;
+    private Integer age;
+    private String bio;
+
     private Boolean active;
     private Double price;
     private String description;
@@ -41,11 +46,35 @@ public class AdvertismentDTO {
         this._id = _id;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }

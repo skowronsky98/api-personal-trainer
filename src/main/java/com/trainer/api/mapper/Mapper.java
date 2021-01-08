@@ -55,7 +55,10 @@ public class Mapper {
             @Override
             protected void configure(){
                 map().set_id(source.get_id());
-                map().setProfile(source.getProfile());
+                map().setFirstname(source.getProfile().getFirstname());
+                map().setSurname(source.getProfile().getSurname());
+                map().setAge(source.getProfile().getAge());
+                map().setBio(source.getProfile().getBio());
                 map().setActive(source.getAdvertisment().getActive());
                 map().setPrice(source.getAdvertisment().getPrice());
                 map().setDescription(source.getAdvertisment().getDescription());

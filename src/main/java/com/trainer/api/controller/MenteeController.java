@@ -53,6 +53,10 @@ public class MenteeController {
         return trainerService.getActiveAdvertisments();
     }
 
+    @GetMapping("/trainers")
+    public Collection<TrainerDTO> getTrainers(@RequestParam(value = "id") String idMentee){
+        return menteeService.getTrainers(idMentee);
+    }
 
     @GetMapping("/profile")
     public Profile getProfile(@RequestHeader(value = "id")  String idMentee){

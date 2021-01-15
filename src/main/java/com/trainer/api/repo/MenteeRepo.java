@@ -1,6 +1,7 @@
 package com.trainer.api.repo;
 
 import com.trainer.api.model.user.Mentee;
+import com.trainer.api.model.user.Trainer;
 
 import java.util.Collection;
 
@@ -9,4 +10,6 @@ public interface MenteeRepo {
     Collection<Mentee> getAllMentee();
     Mentee saveMentee(Mentee mentee);
     Mentee getMentee(String idMentee);
+    Mentee assignTrainer(Mentee mentee, Trainer trainer);
+    Collection<Trainer> getTraieners(String idMentee);
 }

@@ -57,7 +57,7 @@ public class TrainerController {
     }
 
     @PatchMapping
-    public Collection<MenteeDTO> assignMentee(@RequestHeader(value = "mid")  String idMentee,
+    public MenteeDTO assignMentee(@RequestHeader(value = "mid")  String idMentee,
                                @RequestHeader(value = "tid") String idTrainer){
         return trainerService.assignMentee(idMentee,idTrainer);
     }

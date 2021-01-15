@@ -66,17 +66,25 @@ public class TrainerService{
                 .collect(Collectors.toList());
     }
 
-    public Collection<MenteeDTO> assignMentee(String idMentee, String idTrainer){
-        Mentee mentee = menteeRepo.getMentee(idMentee);
+    public MenteeDTO assignMentee(String idMentee, String idTrainer){
+        Trainer trainer = trainerRepo.getTrainerById(idTrainer);
+        Mentee mentee = menteeRepo.getMenteeByID(idMentee);
 
-        return trainerRepo
-                .assignMentee(idTrainer, mentee)
-                .getMentees()
-                .stream()
-                .map(m -> mapper
-                        .getMenteeMapper()
-                        .map(m,MenteeDTO.class))
-                .collect(Collectors.toList());
+
+
+        //delete Mentee from invitasion list
+        trainerRepo.deleteInvitation(trainer,mentee);
+
+        trainer = trainerRepo.assignMentee(trainer,mentee);
+        //assign Trainer to Mentee
+        mentee = menteeRepo.assignTrainer(mentee,trainer);
+
+
+
+
+
+        return mapper.getMenteeMapper()
+                .map(mentee,MenteeDTO.class);
     }
 
     public Collection<TrainerDTO> getAllTrainers(){

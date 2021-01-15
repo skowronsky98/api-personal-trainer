@@ -3,17 +3,17 @@ package com.trainer.api.model;
 import com.trainer.api.model.user.Mentee;
 
 public class Invite {
-    private Mentee mentees;
+    private Mentee mentee;
 
-    public Invite(Mentee mentees) {
-        this.mentees = mentees;
+    public Invite(Mentee mentee) {
+        this.mentee = mentee;
     }
 
-    public Mentee getMentees() {
-        return mentees;
+    public Mentee getMentee() {
+        return mentee;
     }
 
-    public void setMentees(Mentee mentees) {
-        this.mentees = mentees;
+    public void setMentee(Mentee mentee) {
+        this.mentee = mentee;
     }
 }

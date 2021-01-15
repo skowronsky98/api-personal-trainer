@@ -2,6 +2,7 @@ package com.trainer.api.repo.impl;
 
 import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.manager.TrainerManager;
+import com.trainer.api.model.Invite;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.TrainerRepo;
@@ -50,11 +51,9 @@ public class TrainerImpl implements TrainerRepo {
     }
 
     @Override
-    public Trainer assignMentee(String idTrainer, Mentee mentee){
-        return trainerManager.findById(idTrainer).map(trainer -> {
-            trainer.setMentees(trainer.addMentee(mentee));
-            return trainerManager.save(trainer);
-        }).orElseThrow(() -> new ResourceNotFoundException("add metee to list"));
+    public Trainer assignMentee(Trainer trainer, Mentee mentee){
+        trainer.setMentees(trainer.addMentee(mentee));
+        return trainerManager.save(trainer);
     }
 
     @Override
@@ -63,6 +62,23 @@ public class TrainerImpl implements TrainerRepo {
                 .stream()
                 .filter(trainer -> trainer.getAdvertisment().getActive())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Trainer deleteInvitation(Trainer trainer, Mentee mentee) {
+        List<Invite> invites = trainer.getInvites();
+
+        if(invites != null){
+            Invite invite =  invites.stream()
+                    .filter(i -> i.getMentee().get_id().equals(mentee.get_id()))
+                    .findFirst()
+                    .orElseThrow(() -> new ResourceNotFoundException("mentee not found in invites"));
+            invites.remove(invite);
+            trainer.setInvites(invites);
+        }else
+            throw new ResourceNotFoundException("No invites");
+
+        return trainerManager.save(trainer);
     }
 
 }

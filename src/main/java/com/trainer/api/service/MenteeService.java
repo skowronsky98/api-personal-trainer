@@ -41,6 +41,18 @@ public class MenteeService {
                 .map(menteeRepo.saveMentee(mentee),MenteeDTO.class);
     }
 
+    public MenteeDTO getMentee(String email){
+        return mapper
+            .getMenteeMapper()
+            .map(menteeRepo.getMenteeByEmail(email),MenteeDTO.class);
+    }
+
+//    public MenteeDTO getMenteeByEmail(String email){
+//        return mapper
+//                .getMenteeMapper()
+//                .map(menteeRepo.getMenteeByEmail(email),MenteeDTO.class);
+//    }
+
     public Profile getProfile(String idMentee){
         return profileRepo.getMenteeProfile(idMentee);
     }

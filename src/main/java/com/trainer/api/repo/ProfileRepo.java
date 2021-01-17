@@ -7,4 +7,5 @@ public interface ProfileRepo {
     Profile getTrainerProfile(String idTrainer);
     Profile setMenteeProfile(String idMentee, Profile profile);
     Profile setTrainerProfile(String idTrainner, Profile profile);
+
 }

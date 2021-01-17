@@ -33,6 +33,14 @@ public class MenteeController {
     private TrainerService trainerService;
 
     @GetMapping
+    public MenteeDTO getMentee(
+            @RequestParam(value = "email") String email){
+        return menteeService.getMentee(email);
+    }
+
+
+
+    @GetMapping("/all")
     public Collection<MenteeDTO> getAllMentee(){
         return menteeService.getAllMenteeDTO();
     }

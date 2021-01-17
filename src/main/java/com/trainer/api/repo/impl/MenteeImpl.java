@@ -51,6 +51,15 @@ public class MenteeImpl implements MenteeRepo {
 
 
     @Override
+    public Mentee getMenteeByEmail(String email) {
+        return menteeManager.findAll()
+                .stream()
+                .filter(mentee -> mentee.getEmail().equals(email))
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException("mentee email doestn exist: "+email));
+    }
+
+    @Override
     public Mentee getMenteeByID(String idMentee){
         return menteeManager
                 .findById(idMentee)

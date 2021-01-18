@@ -20,9 +20,15 @@ public class Mapper {
             protected void configure() {
                 map().set_id(source.get_id());
                 map().setEmail(source.getEmail());
-                map().setProfile(source.getProfile());
+
+                map().setFirstname(source.getProfile().getFirstname());
+                map().setSurname(source.getProfile().getSurname());
+                map().setAge(source.getProfile().getAge());
+                map().setBio(source.getProfile().getBio());
+
+
+
                 map().setTarget(source.getTarget());
-                map().setDimensions(source.getDimensions());
                 map().setTrainers(source.getAssignedTainers());
                 map().setWeekPlans(source.getWeekPlans());
             }

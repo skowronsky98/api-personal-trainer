@@ -58,6 +58,8 @@ public class WeekPlan {
     }
 
     public Collection<DailyPlan> getDailyPlans() {
+        if (dailyPlans == null)
+            dailyPlans = new ArrayList<>();
         return dailyPlans;
     }
 

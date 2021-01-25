@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MealPlanTest {
-    Meal meal = new Meal();
     String name = "Jajecznica";
-    String type = "Śniadanie";
+    Meal meal = new Meal((long) 1,name,"two eggs", "recipe", 200);
+
 
     @Test
     void createInstanceMealPlan(){
@@ -24,6 +24,15 @@ class MealPlanTest {
 
         assertNotEquals(null,mealPlan);
     }
+
+    @Test
+    void checkMealInMealPlan() {
+        MealPlan mealPlan = new MealPlan("Reduction", meal, "breakfast");
+        assertEquals("breakfast", mealPlan.getType());
+        assertEquals(meal, mealPlan.getMeal());
+    }
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.trainer.api.model.user;
 
+import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.Dimensions;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.Raport;
@@ -25,6 +26,7 @@ public class Mentee {
     private String target;
     private Dimensions dimensions;
     private Collection<Raport> raports;
+    private Advertisment advertisment;
 
     @DBRef(lazy = true)
     private Collection<WeekPlan> weekPlans;
@@ -40,6 +42,7 @@ public class Mentee {
                   Profile profile,
                   String target,
                   Dimensions dimensions,
+                  Advertisment advertisment,
                   Collection<Raport> raports,
                   Collection<WeekPlan> weekPlans,
                   List<Trainer> assignedTainers) {
@@ -49,11 +52,10 @@ public class Mentee {
         this.target = target;
         this.dimensions = dimensions;
         this.raports = raports;
+        this.advertisment = advertisment;
         this.weekPlans = weekPlans;
         this.assignedTainers = assignedTainers;
     }
-
-
 
     public String get_id() {
         return _id;
@@ -109,6 +111,15 @@ public class Mentee {
 
     public void setWeekPlans(Collection<WeekPlan> weekPlans) {
         this.weekPlans = weekPlans;
+    }
+
+
+    public Advertisment getAdvertisment() {
+        return advertisment;
+    }
+
+    public void setAdvertisment(Advertisment advertisment) {
+        this.advertisment = advertisment;
     }
 
     public List<Trainer> getAssignedTainers() {

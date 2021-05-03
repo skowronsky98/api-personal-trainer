@@ -19,7 +19,7 @@ public class TrainerDTO {
 
     private Collection<Meal> meals;
     private Dimensions dimensions;
-    private Advertisment advertisment;
+
 
     private List<Mentee> mentees;
 
@@ -71,11 +71,5 @@ public class TrainerDTO {
         this.dimensions = dimensions;
     }
 
-    public Advertisment getAdvertisment() {
-        return advertisment;
-    }
 
-    public void setAdvertisment(Advertisment advertisment) {
-        this.advertisment = advertisment;
-    }
 }

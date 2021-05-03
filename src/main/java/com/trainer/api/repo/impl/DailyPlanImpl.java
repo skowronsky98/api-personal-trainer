@@ -34,8 +34,7 @@ public class DailyPlanImpl implements DailyPlanRepo {
 
     @Override
     public void deleteDailyPlan(String idDailyPlan) {
-        DailyPlan dailyPlan = getDailyPlanById(idDailyPlan);
-        dailPlanManager.delete(dailyPlan);
+        dailPlanManager.deleteById(idDailyPlan);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class Trainer {
 
     private Profile profile;
     private Dimensions dimensions;
-    private Advertisment advertisment;
+
     private List<Invite> invites;
     private List<Meal> meals;
 
@@ -46,7 +46,6 @@ public class Trainer {
                    String email,
                    Profile profile,
                    Dimensions dimensions,
-                   Advertisment advertisment,
                    List<Invite> invites,
                    List<Meal> meals,
                    List<Mentee> mentees,
@@ -57,7 +56,6 @@ public class Trainer {
         this.email = email;
         this.profile = profile;
         this.dimensions = dimensions;
-        this.advertisment = advertisment;
         this.invites = invites;
         this.meals = meals;
         this.mentees = mentees;
@@ -105,14 +103,6 @@ public class Trainer {
 
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
-    }
-
-    public Advertisment getAdvertisment() {
-        return advertisment;
-    }
-
-    public void setAdvertisment(Advertisment advertisment) {
-        this.advertisment = advertisment;
     }
 
     public List<Meal> getMeals() {

@@ -26,7 +26,7 @@ public class Mapper {
                 map().setAge(source.getProfile().getAge());
                 map().setBio(source.getProfile().getBio());
 
-
+                map().setAdvertisment(source.getAdvertisment());
 
                 map().setTarget(source.getTarget());
                 map().setTrainers(source.getAssignedTainers());
@@ -46,7 +46,7 @@ public class Mapper {
                 map().set_id(source.get_id());
                 map().setEmail(source.getEmail());
                 map().setProfile(source.getProfile());
-                map().setAdvertisment(source.getAdvertisment());
+
                 map().setMeals(source.getMeals());
                 map().setDimensions(source.getDimensions());
                 map().setMentees(source.getMentees());
@@ -57,7 +57,7 @@ public class Mapper {
 
     public ModelMapper getAdvertismentMapper(){
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.addMappings(new PropertyMap<Trainer, AdvertismentDTO>() {
+        modelMapper.addMappings(new PropertyMap<Mentee, AdvertismentDTO>() {
             @Override
             protected void configure(){
                 map().set_id(source.get_id());

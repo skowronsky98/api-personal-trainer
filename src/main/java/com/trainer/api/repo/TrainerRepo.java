@@ -12,6 +12,6 @@ public interface TrainerRepo {
     List<Mentee> getTrainerMentees(String id);
     Mentee getTrainerMenteeById(String trainnerID, String menteeID);
     Trainer assignMentee(Trainer trainer, Mentee mentee);
-    List<Trainer> getActiveAdvertisments();
+//    List<Trainer> getActiveAdvertisments();
     Trainer deleteInvitation(Trainer trainer, Mentee mentee);
 }

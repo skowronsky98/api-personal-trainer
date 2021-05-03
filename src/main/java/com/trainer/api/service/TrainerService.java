@@ -58,13 +58,13 @@ public class TrainerService{
         return profileRepo.setTrainerProfile(idTrainer,profile);
     }
 
-    public List<AdvertismentDTO> getActiveAdvertisments(){
-        return trainerRepo
-                .getActiveAdvertisments()
-                .stream()
-                .map(t -> mapper.getAdvertismentMapper().map(t, AdvertismentDTO.class))
-                .collect(Collectors.toList());
-    }
+//    public List<AdvertismentDTO> getActiveAdvertisments(){
+//        return trainerRepo
+//                .getActiveAdvertisments()
+//                .stream()
+//                .map(t -> mapper.getAdvertismentMapper().map(t, AdvertismentDTO.class))
+//                .collect(Collectors.toList());
+//    }
 
     public MenteeDTO assignMentee(String idMentee, String idTrainer){
         Trainer trainer = trainerRepo.getTrainerById(idTrainer);
@@ -77,7 +77,7 @@ public class TrainerService{
 
         trainer = trainerRepo.assignMentee(trainer,mentee);
         //assign Trainer to Mentee
-        mentee = menteeRepo.assignTrainer(mentee,trainer);
+        mentee = menteeRepo.assignTrainer(idMentee,idTrainer);
 
 
 

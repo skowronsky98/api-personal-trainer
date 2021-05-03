@@ -15,8 +15,10 @@ public class WeekPlan {
     @Id
     private String _id;
     private int numberOfWeek;
+
     @DBRef(lazy = true)
     private Collection<DailyPlan> dailyPlans;
+
     @JsonIgnore
     @DBRef(lazy = true)
     private Trainer trainer;

@@ -56,13 +56,13 @@ public class TrainerImpl implements TrainerRepo {
         return trainerManager.save(trainer);
     }
 
-    @Override
-    public List<Trainer> getActiveAdvertisments() {
-        return trainerManager.findAll()
-                .stream()
-                .filter(trainer -> trainer.getAdvertisment().getActive())
-                .collect(Collectors.toList());
-    }
+//    @Override
+//    public List<Trainer> getActiveAdvertisments() {
+//        return trainerManager.findAll()
+//                .stream()
+//                .filter(trainer -> trainer.getAdvertisment().getActive())
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public Trainer deleteInvitation(Trainer trainer, Mentee mentee) {

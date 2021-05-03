@@ -1,79 +1,91 @@
 package com.trainer.api.controller;
 
-import com.trainer.api.dto.AdvertismentDTO;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
-import com.trainer.api.model.Invite;
+import com.trainer.api.mapper.Mapper;
+import com.trainer.api.model.Dimensions;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
-import com.trainer.api.model.user.Trainer;
-import com.trainer.api.service.MenteeService;
-import com.trainer.api.service.PlanService;
-import com.trainer.api.service.SubscribeService;
-import com.trainer.api.service.TrainerService;
+import com.trainer.api.repo.MenteeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/mentee")
 public class MenteeController {
     @Autowired
-    private MenteeService menteeService;
+    private MenteeRepo menteeRepo;
 
     @Autowired
-    private PlanService planService;
-
-    @Autowired
-    private SubscribeService subscribeService;
-
-    @Autowired
-    private TrainerService trainerService;
+    private Mapper mapper;
 
     @GetMapping
     public MenteeDTO getMentee(
             @RequestParam(value = "email") String email){
-        return menteeService.getMentee(email);
+        return mapper
+                .getMenteeMapper()
+                .map(menteeRepo.getMenteeByEmail(email),MenteeDTO.class);
     }
-
-
 
     @GetMapping("/all")
     public Collection<MenteeDTO> getAllMentee(){
-        return menteeService.getAllMenteeDTO();
+        return menteeRepo.getAllMentee()
+                .stream()
+                .map(mentee -> mapper.getMenteeMapper().map(mentee,MenteeDTO.class))
+                .collect(Collectors.toList());
     }
 
     @PostMapping
     public MenteeDTO addMentee(@RequestBody Mentee mentee){
-        return menteeService.addMentee(mentee);
+        return mapper
+                .getMenteeMapper()
+                .map(menteeRepo.saveMentee(mentee),MenteeDTO.class);
     }
 
-    @PostMapping("/invite")
-    public Collection<Invite> subscribe(@RequestHeader(value = "mid")  String idMentee,
-                                        @RequestHeader(value = "tid") String idTrainer){
-        return subscribeService.subscribe(idMentee,idTrainer);
+    @PatchMapping("/trainer/attach")
+    public TrainerDTO attachTrainer(@RequestParam(value = "idt") String idTrainer,
+                                    @RequestParam(value = "idm") String idMentee){
+        return mapper.getTrainerMapper()
+                .map(menteeRepo.assignTrainer(idMentee,idTrainer),TrainerDTO.class);
     }
 
-    @GetMapping("/advertisments")
-    public List<AdvertismentDTO> getAdvertisments(){
-        return trainerService.getActiveAdvertisments();
+    @PatchMapping("/trainer/detach")
+    public TrainerDTO detachTrainer(@RequestParam(value = "idt") String idTrainer,
+                                    @RequestParam(value = "idm") String idMentee){
+        return mapper.getTrainerMapper()
+                .map(menteeRepo.detachTrainer(idMentee,idTrainer),TrainerDTO.class);
     }
 
     @GetMapping("/trainers")
     public Collection<TrainerDTO> getTrainers(@RequestParam(value = "id") String idMentee){
-        return menteeService.getTrainers(idMentee);
+        return  menteeRepo.getTraieners(idMentee)
+                .stream()
+                .map(trainer -> mapper.getTrainerMapper().map(trainer,TrainerDTO.class))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/profile")
-    public Profile getProfile(@RequestHeader(value = "id")  String idMentee){
-        return menteeService.getProfile(idMentee);
+    public Profile getProfile(@RequestParam(value = "id")  String idMentee){
+        return menteeRepo.getProfile(idMentee);
     }
 
     @PostMapping("/profile")
-    public Profile setProfile(@RequestHeader(value = "id")  String idMentee,
+    public Profile setProfile(@RequestParam(value = "id")  String idMentee,
                               @RequestBody Profile profile){
-        return menteeService.setProfile(idMentee,profile);
+        return menteeRepo.setProfile(idMentee,profile);
+    }
+
+    @GetMapping("/dimensions")
+    public Dimensions getDimensions(@RequestParam(value = "id")  String idMentee){
+        return menteeRepo.getDimensions(idMentee);
+    }
+
+    @PostMapping("/dimensions")
+    public Dimensions setDimensions(@RequestParam(value = "id")  String idMentee,
+                              @RequestBody Dimensions dimensions){
+        return menteeRepo.setDimensions(idMentee,dimensions);
     }
 }

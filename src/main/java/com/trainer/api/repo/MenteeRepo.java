@@ -1,5 +1,7 @@
 package com.trainer.api.repo;
 
+import com.trainer.api.model.Dimensions;
+import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
 
@@ -10,7 +12,11 @@ public interface MenteeRepo {
     Mentee getMenteeByID(String idMentee);
     Collection<Mentee> getAllMentee();
     Mentee saveMentee(Mentee mentee);
-    Mentee getMentee(String idMentee);
-    Mentee assignTrainer(Mentee mentee, Trainer trainer);
+    Profile getProfile(String idMentee);
+    Profile setProfile(String idMentee, Profile profile);
+    Mentee assignTrainer(String idMentee, String idTrainer);
     Collection<Trainer> getTraieners(String idMentee);
+    Mentee detachTrainer(String idMentee, String idTrainer);
+    Dimensions getDimensions(String idMentee);
+    Dimensions setDimensions(String idMentee, Dimensions dimensions);
 }

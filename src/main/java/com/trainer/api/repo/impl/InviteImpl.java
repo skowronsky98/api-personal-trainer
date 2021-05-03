@@ -12,49 +12,49 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-public class InviteImpl implements InviteRepo {
-
-    @Autowired
-    private TrainerManager trainerManager;
-
-    @Autowired
-    private MenteeManager menteeManager;
-
-    @Override
-    public List<Invite> addInvite(String idMentee, String idTrainer) {
-        Trainer trainer = trainerManager
-                .findById(idTrainer)
-                .orElseThrow(() -> new ResourceNotFoundException("trainer not found id: "+idTrainer));
-        Mentee mentee = menteeManager
-                .findById(idMentee)
-                .orElseThrow(() -> new ResourceNotFoundException("mentee not found id: "+idMentee));
-
-        Invite invite = new Invite(mentee);
-        List<Invite> invites = trainer.addInvitation(invite);
-
-        trainerManager.save(trainer);
-        return invites;
-    }
-
-    @Override
-    public List<Invite> getInvites(String idTrainer) {
-        return trainerManager.findById(idTrainer)
-                .orElseThrow(() -> new ResourceNotFoundException("trainer not found id: "+idTrainer))
-                .getInvites();
-
-    }
-
-    @Override
-    public List<Invite> delInvite(Invite invite, String idTrainer) {
-        Trainer trainer = trainerManager
-                .findById(idTrainer)
-                .orElseThrow(() -> new ResourceNotFoundException("trainer not found id: "+idTrainer));
-
-        List<Invite> invites =  trainer.getInvites();
-        invites.remove(invite);
-        trainerManager.save(trainer);
-
-        return invites;
-    }
-}
+//@Component
+//public class InviteImpl implements InviteRepo {
+//
+//    @Autowired
+//    private TrainerManager trainerManager;
+//
+//    @Autowired
+//    private MenteeManager menteeManager;
+//
+//    @Override
+//    public List<Invite> addInvite(String idMentee, String idTrainer) {
+//        Trainer trainer = trainerManager
+//                .findById(idTrainer)
+//                .orElseThrow(() -> new ResourceNotFoundException("trainer not found id: "+idTrainer));
+//        Mentee mentee = menteeManager
+//                .findById(idMentee)
+//                .orElseThrow(() -> new ResourceNotFoundException("mentee not found id: "+idMentee));
+//
+//        Invite invite = new Invite(mentee);
+//        List<Invite> invites = trainer.addInvitation(invite);
+//
+//        trainerManager.save(trainer);
+//        return invites;
+//    }
+//
+//    @Override
+//    public List<Invite> getInvites(String idTrainer) {
+//        return trainerManager.findById(idTrainer)
+//                .orElseThrow(() -> new ResourceNotFoundException("trainer not found id: "+idTrainer))
+//                .getInvites();
+//
+//    }
+//
+//    @Override
+//    public List<Invite> delInvite(Invite invite, String idTrainer) {
+//        Trainer trainer = trainerManager
+//                .findById(idTrainer)
+//                .orElseThrow(() -> new ResourceNotFoundException("trainer not found id: "+idTrainer));
+//
+//        List<Invite> invites =  trainer.getInvites();
+//        invites.remove(invite);
+//        trainerManager.save(trainer);
+//
+//        return invites;
+//    }
+//}

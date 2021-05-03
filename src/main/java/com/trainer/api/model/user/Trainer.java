@@ -24,7 +24,7 @@ public class Trainer {
     private Profile profile;
     private Dimensions dimensions;
 
-    private List<Invite> invites;
+    //private List<Invite> invites;
     private List<Meal> meals;
 
     @DBRef(lazy = true)
@@ -46,7 +46,7 @@ public class Trainer {
                    String email,
                    Profile profile,
                    Dimensions dimensions,
-                   List<Invite> invites,
+                   //List<Invite> invites,
                    List<Meal> meals,
                    List<Mentee> mentees,
                    Collection<WeekPlan> weekPlans,
@@ -56,7 +56,7 @@ public class Trainer {
         this.email = email;
         this.profile = profile;
         this.dimensions = dimensions;
-        this.invites = invites;
+        //this.invites = invites;
         this.meals = meals;
         this.mentees = mentees;
         this.weekPlans = weekPlans;
@@ -128,13 +128,13 @@ public class Trainer {
     }
 
 
-    public List<Invite> getInvites() {
-        return invites;
-    }
-
-    public void setInvites(List<Invite> invite) {
-        this.invites = invite;
-    }
+//    public List<Invite> getInvites() {
+//        return invites;
+//    }
+//
+//    public void setInvites(List<Invite> invite) {
+//        this.invites = invite;
+//    }
 
     public void addMeal(Meal meal){
         if (meals == null)
@@ -142,12 +142,12 @@ public class Trainer {
         meals.add(meal);
     }
 
-    public List<Invite> addInvitation(Invite invitation){
-        if(invites == null)
-            invites = new ArrayList<>();
-        invites.add(invitation);
-        return invites;
-    }
+//    public List<Invite> addInvitation(Invite invitation){
+//        if(invites == null)
+//            invites = new ArrayList<>();
+//        invites.add(invitation);
+//        return invites;
+//    }
 
     public void addDailyPlan(DailyPlan dailyPlan){
         if(dailyPlans == null)

@@ -1,5 +1,7 @@
 package com.trainer.api.repo;
 
+import com.trainer.api.model.Dimensions;
+import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
 
@@ -11,7 +13,13 @@ public interface TrainerRepo {
     Trainer getTrainerById(String id);
     List<Mentee> getTrainerMentees(String id);
     Mentee getTrainerMenteeById(String trainnerID, String menteeID);
-    Trainer assignMentee(Trainer trainer, Mentee mentee);
+    Trainer assignMentee(String idTrainer, String idMentee);
+    Trainer detachMentee(String idTrainer, String idMentee);
 //    List<Trainer> getActiveAdvertisments();
-    Trainer deleteInvitation(Trainer trainer, Mentee mentee);
+
+    Profile getProfile(String idTrainer);
+    Profile setProfile(String idTrainer, Profile profile);
+    Dimensions getDiemensions(String idTrainer);
+    Dimensions setDimensions(String idTrainer, Dimensions dimensions);
+
 }

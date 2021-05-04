@@ -1,12 +1,15 @@
 package com.trainer.api.controller;
 
+import com.trainer.api.dto.AdvertismentDTO;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
+import com.trainer.api.enums.DietGoals;
 import com.trainer.api.mapper.Mapper;
 import com.trainer.api.model.Dimensions;
 import com.trainer.api.model.Meal;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Trainer;
+import com.trainer.api.repo.AdvertismentRepo;
 import com.trainer.api.repo.TrainerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +29,9 @@ public class TrainerController {
     @Autowired
     private Mapper mapper;
 
+    @Autowired
+    private AdvertismentRepo advertismentRepo;
+
     @GetMapping("/all")
     public Collection<TrainerDTO> getTrainers(){
         return trainerRepo.getAllTrainers().stream()
@@ -44,9 +50,6 @@ public class TrainerController {
         return mapper.getTrainerMapper()
                 .map( trainerRepo.saveTrainer(trainer),TrainerDTO.class);
     }
-
-
-
 
     @GetMapping("/mentees")
     public Collection<MenteeDTO> getTrainerMentees(@RequestParam(value = "id") String idTrainer){
@@ -116,25 +119,18 @@ public class TrainerController {
                             @RequestBody Long idMeal){
         return trainerRepo.deleteMeal(idTrainer, idMeal);
     }
-//
-//
-////    @GetMapping("/advertisments")
-////    public List<AdvertismentDTO> getAdvertisments(){
-////        return trainerService.getActiveAdvertisments();
-////    }
-//
-//    @GetMapping("/mentee")
-//    public MenteeDTO getTrainerMenteeById(
-//            @RequestParam(value = "mid")  String idMentee
-//            ,@RequestParam(value = "tid") String idTrainer){
-//        return trainerService.getTrainerMenteeById(idTrainer,idMentee);
-//    }
-//
-//    @GetMapping("/invites")
-//    public List<Invite> getInvites(@RequestParam(value = "id") String idTrainer){
-//        return subscribeService.getInvites(idTrainer);
-//    }
-//
-//
-//
+
+    @GetMapping("/advertisment/all")
+    public Collection<AdvertismentDTO> getAllAdvertisment(DietGoals dietGoals){
+        return advertismentRepo.getAdvertisment(dietGoals).stream()
+                .map(add -> mapper.getAdvertismentMapper().map(add,AdvertismentDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/advertisment")
+    public void subsribe(@RequestParam(value = "ida") String idAd,
+                         @RequestParam(value = "idt") String idTrainer){
+        advertismentRepo.subscribe(idAd,idTrainer);
+    }
+
 }

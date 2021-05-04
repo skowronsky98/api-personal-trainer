@@ -1,29 +1,50 @@
 package com.trainer.api.model;
 
 import com.trainer.api.enums.DietGoals;
+import com.trainer.api.model.user.Mentee;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+
+@Document(collection = "advertisment")
 public class Advertisment {
+    @Id
+    private String _id;
     private Boolean active;
     private Double price;
     private String description;
     private DietGoals dietGoal;
 
+    @DBRef(lazy = true)
+    private Mentee mentee;
+
     public Advertisment() {
     }
 
-    public Advertisment(Boolean active, Double price, String description, DietGoals dietGoal) {
+    public Advertisment(String _id, Boolean active, Double price, String description, DietGoals dietGoal, Mentee mentee) {
+        this._id = _id;
         this.active = active;
         this.price = price;
         this.description = description;
         this.dietGoal = dietGoal;
+        this.mentee = mentee;
     }
 
-    public DietGoals getDietGoal() {
-        return dietGoal;
+    public Mentee getMentee() {
+        return mentee;
     }
 
-    public void setDietGoal(DietGoals dietGoal) {
-        this.dietGoal = dietGoal;
+    public void setMentee(Mentee mentee) {
+        this.mentee = mentee;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public Boolean getActive() {
@@ -48,5 +69,13 @@ public class Advertisment {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public DietGoals getDietGoal() {
+        return dietGoal;
+    }
+
+    public void setDietGoal(DietGoals dietGoal) {
+        this.dietGoal = dietGoal;
     }
 }

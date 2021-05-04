@@ -25,8 +25,11 @@ public class Mentee {
     private Profile profile;
     private String target;
     private Dimensions dimensions;
-    private Collection<Raport> raports;
+
+    @DBRef(lazy = true)
     private Advertisment advertisment;
+
+    private Collection<Raport> raports;
 
     @DBRef(lazy = true)
     private Collection<WeekPlan> weekPlans;
@@ -51,10 +54,18 @@ public class Mentee {
         this.profile = profile;
         this.target = target;
         this.dimensions = dimensions;
-        this.raports = raports;
         this.advertisment = advertisment;
+        this.raports = raports;
         this.weekPlans = weekPlans;
         this.assignedTainers = assignedTainers;
+    }
+
+    public Advertisment getAdvertisment() {
+        return advertisment;
+    }
+
+    public void setAdvertisment(Advertisment advertisment) {
+        this.advertisment = advertisment;
     }
 
     public String get_id() {
@@ -111,15 +122,6 @@ public class Mentee {
 
     public void setWeekPlans(Collection<WeekPlan> weekPlans) {
         this.weekPlans = weekPlans;
-    }
-
-
-    public Advertisment getAdvertisment() {
-        return advertisment;
-    }
-
-    public void setAdvertisment(Advertisment advertisment) {
-        this.advertisment = advertisment;
     }
 
     public List<Trainer> getAssignedTainers() {

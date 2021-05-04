@@ -26,8 +26,6 @@ public class Mapper {
                 map().setAge(source.getProfile().getAge());
                 map().setBio(source.getProfile().getBio());
 
-                map().setAdvertisment(source.getAdvertisment());
-
                 map().setTarget(source.getTarget());
                 map().setTrainers(source.getAssignedTainers());
                 map().setWeekPlans(source.getWeekPlans());
@@ -57,17 +55,19 @@ public class Mapper {
 
     public ModelMapper getAdvertismentMapper(){
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.addMappings(new PropertyMap<Mentee, AdvertismentDTO>() {
+        modelMapper.addMappings(new PropertyMap<Advertisment, AdvertismentDTO>() {
             @Override
             protected void configure(){
                 map().set_id(source.get_id());
-                map().setFirstname(source.getProfile().getFirstname());
-                map().setSurname(source.getProfile().getSurname());
-                map().setAge(source.getProfile().getAge());
-                map().setBio(source.getProfile().getBio());
-                map().setActive(source.getAdvertisment().getActive());
-                map().setPrice(source.getAdvertisment().getPrice());
-                map().setDescription(source.getAdvertisment().getDescription());
+                map().setActive(source.getActive());
+                map().setPrice(source.getPrice());
+                map().setDescription(source.getDescription());
+                map().setDietGoals(source.getDietGoal());
+
+                map().setMentee(getMenteeMapper().map(source.getMentee(),MenteeDTO.class));
+
+
+//                map().setDietGoals(source);
             }
         });
         return modelMapper;

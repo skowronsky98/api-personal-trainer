@@ -1,6 +1,8 @@
 package com.trainer.api.dto;
 
+import com.trainer.api.enums.DietGoals;
 import com.trainer.api.model.Profile;
+import com.trainer.api.model.user.Mentee;
 
 public class AdvertismentDTO {
     private String _id;
@@ -13,6 +15,17 @@ public class AdvertismentDTO {
     private Boolean active;
     private Double price;
     private String description;
+    private DietGoals dietGoals;
+
+    private MenteeDTO mentee;
+
+    public MenteeDTO getMentee() {
+        return mentee;
+    }
+
+    public void setMentee(MenteeDTO mentee) {
+        this.mentee = mentee;
+    }
 
     public String getDescription() {
         return description;
@@ -76,5 +89,13 @@ public class AdvertismentDTO {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public DietGoals getDietGoals() {
+        return dietGoals;
+    }
+
+    public void setDietGoals(DietGoals dietGoals) {
+        this.dietGoals = dietGoals;
     }
 }

@@ -3,6 +3,7 @@ package com.trainer.api.service;
 
 import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.manager.MenteeManager;
+import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.Dimensions;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
@@ -74,6 +75,7 @@ public class MenteeService implements MenteeRepo{
         saveMentee(mentee);
         return mentee.getDimensions();
     }
+
 
     @Override
     public Mentee assignTrainer(String idMentee, String idTrainer) {

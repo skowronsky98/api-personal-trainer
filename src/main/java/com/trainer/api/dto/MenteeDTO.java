@@ -20,7 +20,7 @@ public class MenteeDTO {
     private Integer age;
     private String bio;
 
-    private Advertisment advertisment;
+    //private Advertisment advertisment;
 
     private List<Trainer> trainers;
     private Collection<Raport> raports;
@@ -78,13 +78,13 @@ public class MenteeDTO {
         this.bio = bio;
     }
 
-    public Advertisment getAdvertisment() {
-        return advertisment;
-    }
-
-    public void setAdvertisment(Advertisment advertisment) {
-        this.advertisment = advertisment;
-    }
+//    public Advertisment getAdvertisment() {
+//        return advertisment;
+//    }
+//
+//    public void setAdvertisment(Advertisment advertisment) {
+//        this.advertisment = advertisment;
+//    }
 
 
     public Collection<Raport> getRaports() {

@@ -1,5 +1,6 @@
 package com.trainer.api.repo;
 
+import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.Dimensions;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
@@ -19,4 +20,5 @@ public interface MenteeRepo {
     Mentee detachTrainer(String idMentee, String idTrainer);
     Dimensions getDimensions(String idMentee);
     Dimensions setDimensions(String idMentee, Dimensions dimensions);
+
 }

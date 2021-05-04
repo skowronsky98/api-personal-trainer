@@ -1,11 +1,15 @@
 package com.trainer.api.controller;
 
+import com.trainer.api.dto.AdvertismentDTO;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
+import com.trainer.api.enums.DietGoals;
 import com.trainer.api.mapper.Mapper;
+import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.Dimensions;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
+import com.trainer.api.repo.AdvertismentRepo;
 import com.trainer.api.repo.MenteeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +25,9 @@ public class MenteeController {
 
     @Autowired
     private Mapper mapper;
+
+    @Autowired
+    private AdvertismentRepo advertismentRepo;
 
     @GetMapping
     public MenteeDTO getMentee(
@@ -87,5 +94,38 @@ public class MenteeController {
     public Dimensions setDimensions(@RequestParam(value = "id")  String idMentee,
                               @RequestBody Dimensions dimensions){
         return menteeRepo.setDimensions(idMentee,dimensions);
+    }
+
+
+    @GetMapping("/advertisment")
+    public AdvertismentDTO getAdvertisment(@RequestParam(value = "id")  String idMentee){
+        return mapper.getAdvertismentMapper()
+                .map(advertismentRepo.getAdvertisment(idMentee),AdvertismentDTO.class);
+
+
+    }
+
+
+    @PostMapping("/advertisment")
+    public AdvertismentDTO addAdvertisment(@RequestParam(value = "id")  String idMentee, Advertisment advertisment){
+        return mapper.getAdvertismentMapper()
+                .map(advertismentRepo.addAdvertisment(advertisment,idMentee),AdvertismentDTO.class);
+
+
+    }
+
+    @DeleteMapping("/advertisment")
+    public AdvertismentDTO deleteAdvertisment(@RequestParam(value = "id")  String idMentee){
+        return mapper.getAdvertismentMapper()
+                .map(advertismentRepo.deleteAdvertisment(idMentee),AdvertismentDTO.class);
+
+    }
+
+
+    @GetMapping("/advertisment/all")
+    public Collection<AdvertismentDTO> getAllAdvertisment(DietGoals dietGoals){
+        return advertismentRepo.getAdvertisment(dietGoals).stream()
+                        .map(add -> mapper.getAdvertismentMapper().map(add,AdvertismentDTO.class))
+                .collect(Collectors.toList());
     }
 }

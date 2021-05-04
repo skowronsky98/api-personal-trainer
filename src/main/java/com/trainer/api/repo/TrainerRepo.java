@@ -1,6 +1,7 @@
 package com.trainer.api.repo;
 
 import com.trainer.api.model.Dimensions;
+import com.trainer.api.model.Meal;
 import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Mentee;
 import com.trainer.api.model.user.Trainer;
@@ -22,4 +23,8 @@ public interface TrainerRepo {
     Dimensions getDiemensions(String idTrainer);
     Dimensions setDimensions(String idTrainer, Dimensions dimensions);
 
+    Meal addMeal(String idTrainer, Meal meal);
+    Meal getMeal(String idTrainer, Long idMeal);
+    List<Meal> getMeals(String idTrainer);
+    Meal deleteMeal(String idTrainer, Long idMeal);
 }

@@ -1,11 +1,13 @@
 package com.trainer.api.controller;
 
+import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
 import com.trainer.api.mapper.Mapper;
+import com.trainer.api.model.Dimensions;
+import com.trainer.api.model.Meal;
+import com.trainer.api.model.Profile;
 import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.TrainerRepo;
-import com.trainer.api.service.SubscribeService;
-import com.trainer.api.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,12 +25,6 @@ public class TrainerController {
 
     @Autowired
     private Mapper mapper;
-
-    @Autowired
-    private TrainerService trainerService;
-
-    @Autowired
-    private SubscribeService subscribeService;
 
     @GetMapping("/all")
     public Collection<TrainerDTO> getTrainers(){
@@ -49,10 +45,77 @@ public class TrainerController {
                 .map( trainerRepo.saveTrainer(trainer),TrainerDTO.class);
     }
 
-//    @GetMapping("/mentees")
-//    public Collection<MenteeDTO> getTrainerMentees(@RequestParam(value = "id") String idTrainer){
-//        return trainerService.getTrainerMentees(idTrainer);
-//    }
+
+
+
+    @GetMapping("/mentees")
+    public Collection<MenteeDTO> getTrainerMentees(@RequestParam(value = "id") String idTrainer){
+        return trainerRepo.getTrainerMentees(idTrainer)
+                .stream()
+                .map(mentee -> mapper.getMenteeMapper().map(mentee,MenteeDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @PatchMapping("/mentee/attach")
+    public TrainerDTO assignMentee(@RequestParam(value = "mid")  String idMentee,
+                               @RequestParam(value = "tid") String idTrainer){
+        return mapper.getTrainerMapper()
+                .map(trainerRepo.assignMentee(idMentee,idTrainer),TrainerDTO.class);
+    }
+
+
+    @PatchMapping("/mentee/detach")
+    public TrainerDTO detachMentee(@RequestParam(value = "mid")  String idMentee,
+                                   @RequestParam(value = "tid") String idTrainer){
+        return mapper.getTrainerMapper()
+                .map(trainerRepo.detachMentee(idMentee,idTrainer),TrainerDTO.class);
+    }
+
+    @GetMapping("/profile")
+    public Profile getProfile(@RequestParam(value = "id") String idTrainer){
+        return trainerRepo.getProfile(idTrainer);
+    }
+
+    @PostMapping("/profile")
+    public Profile setProfile( @RequestParam(value = "id") String idTrainer,
+                               @RequestBody Profile profile){
+        return trainerRepo.setProfile(idTrainer,profile);
+    }
+
+    @GetMapping("/dimensions")
+    public Dimensions getDimensions(@RequestParam(value = "id") String idTrainer){
+        return trainerRepo.getDiemensions(idTrainer);
+    }
+
+    @PostMapping("/dimensions")
+    public Dimensions setDimensions( @RequestParam(value = "id") String idTrainer,
+                               @RequestBody Dimensions dimensions){
+        return trainerRepo.setDimensions(idTrainer,dimensions);
+    }
+
+
+    @PostMapping("/meal")
+    public Meal addMeal(@RequestParam(value = "id") String idTrainer,
+                        @RequestBody Meal meal){
+        return trainerRepo.addMeal(idTrainer, meal);
+    }
+
+    @GetMapping("/meal")
+    public Meal getMealById(@RequestParam(value = "id") String idTrainer,
+                        @RequestBody Long idMeal){
+        return trainerRepo.getMeal(idTrainer, idMeal);
+    }
+
+    @GetMapping("/meals")
+    public Collection<Meal> getMeals(@RequestParam(value = "id") String idTrainer){
+        return trainerRepo.getMeals(idTrainer);
+    }
+
+    @DeleteMapping("/meal")
+    public Meal deleteMeal(@RequestParam(value = "id") String idTrainer,
+                            @RequestBody Long idMeal){
+        return trainerRepo.deleteMeal(idTrainer, idMeal);
+    }
 //
 //
 ////    @GetMapping("/advertisments")
@@ -74,27 +137,4 @@ public class TrainerController {
 //
 //
 //
-//    @PatchMapping
-//    public MenteeDTO assignMentee(@RequestParam(value = "mid")  String idMentee,
-//                               @RequestParam(value = "tid") String idTrainer){
-//        return trainerService.assignMentee(idMentee,idTrainer);
-//    }
-//
-//    @GetMapping("/profile")
-//    public Profile getProfile( @RequestParam(value = "id") String idTrainer){
-//        return trainerService.getProfile(idTrainer);
-//    }
-//
-//    @PostMapping("/profile")
-//    public Profile setProfile( @RequestParam(value = "id") String idTrainer,
-//                               @RequestBody Profile profile){
-//        return trainerService.setProfile(idTrainer,profile);
-//    }
-//
-//    @PostMapping("/meal")
-//    public Meal addMeal(@RequestParam(value = "id") String idTrainer,
-//                         @RequestBody Meal meal){
-//        return trainerService.addMeal(meal, idTrainer);
-//    }
-
 }

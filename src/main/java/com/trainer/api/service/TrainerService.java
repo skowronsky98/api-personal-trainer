@@ -67,10 +67,16 @@ public class TrainerService implements TrainerRepo{
     @Override
     public Trainer detachMentee(String idTrainer, String idMentee) {
         Trainer trainer = getTrainerById(idTrainer);
-        Mentee mentee = menteeRepo.getMenteeByID(idMentee);
 
         List<Mentee> mentees = trainer.getMentees();
-        mentees.remove(mentee);
+
+
+        for (int i = 0; i < mentees.size(); i++) {
+            if(mentees.get(i).get_id().equals(idMentee)){
+                mentees.remove(i);
+                break;
+            }
+        }
 
         trainer.setMentees(mentees);
 

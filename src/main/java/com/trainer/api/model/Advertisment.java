@@ -14,7 +14,7 @@ public class Advertisment {
     private Boolean active;
     private Double price;
     private String description;
-    private DietGoals dietGoal;
+    private Integer dietGoal;
 
     @DBRef(lazy = true)
     private Mentee mentee;
@@ -22,7 +22,12 @@ public class Advertisment {
     public Advertisment() {
     }
 
-    public Advertisment(String _id, Boolean active, Double price, String description, DietGoals dietGoal, Mentee mentee) {
+    public Advertisment(String _id,
+                        Boolean active,
+                        Double price,
+                        String description,
+                        Integer dietGoal,
+                        Mentee mentee) {
         this._id = _id;
         this.active = active;
         this.price = price;
@@ -71,11 +76,11 @@ public class Advertisment {
         this.description = description;
     }
 
-    public DietGoals getDietGoal() {
+    public Integer getDietGoal() {
         return dietGoal;
     }
 
-    public void setDietGoal(DietGoals dietGoal) {
+    public void setDietGoal(Integer dietGoal) {
         this.dietGoal = dietGoal;
     }
 }

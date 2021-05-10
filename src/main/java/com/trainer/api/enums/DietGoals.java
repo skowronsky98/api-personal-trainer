@@ -1,6 +1,8 @@
 package com.trainer.api.enums;
 
-public enum DietGoals {
+import java.io.Serializable;
+
+public enum DietGoals implements Serializable {
     MAINTENANCE,
     REDUCTION,
     GAIN

@@ -3,7 +3,6 @@ package com.trainer.api.controller;
 import com.trainer.api.dto.AdvertismentDTO;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
-import com.trainer.api.enums.DietGoals;
 import com.trainer.api.mapper.Mapper;
 import com.trainer.api.model.Dimensions;
 import com.trainer.api.model.Meal;
@@ -121,13 +120,13 @@ public class TrainerController {
     }
 
     @GetMapping("/advertisment/all")
-    public Collection<AdvertismentDTO> getAllAdvertisment(DietGoals dietGoals){
-        return advertismentRepo.getAdvertisment(dietGoals).stream()
+    public Collection<AdvertismentDTO> getAllAdvertisment(Integer dietGoals){
+        return advertismentRepo.getAllAdvertisment(dietGoals).stream()
                 .map(add -> mapper.getAdvertismentMapper().map(add,AdvertismentDTO.class))
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/advertisment")
+    @PatchMapping("/advertisment")
     public void subsribe(@RequestParam(value = "ida") String idAd,
                          @RequestParam(value = "idt") String idTrainer){
         advertismentRepo.subscribe(idAd,idTrainer);

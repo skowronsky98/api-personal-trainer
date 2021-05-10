@@ -11,6 +11,6 @@ public interface AdvertismentRepo {
     Advertisment deleteAdvertisment(String idMentee);
 
 
-    List<Advertisment> getAdvertisment(DietGoals dietGoals);
+    List<Advertisment> getAllAdvertisment(Integer dietGoals);
     void subscribe(String idAd, String idTrainer);
 }

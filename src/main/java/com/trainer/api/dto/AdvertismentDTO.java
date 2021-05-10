@@ -1,31 +1,24 @@
 package com.trainer.api.dto;
 
 import com.trainer.api.enums.DietGoals;
-import com.trainer.api.model.Profile;
-import com.trainer.api.model.user.Mentee;
 
 public class AdvertismentDTO {
     private String _id;
 
-    private String firstname;
-    private String surname;
-    private Integer age;
-    private String bio;
-
     private Boolean active;
     private Double price;
     private String description;
-    private DietGoals dietGoals;
+    private Integer dietGoals;
 
-    private MenteeDTO mentee;
+    //private MenteeDTO mentee;
 
-    public MenteeDTO getMentee() {
-        return mentee;
-    }
-
-    public void setMentee(MenteeDTO mentee) {
-        this.mentee = mentee;
-    }
+//    public MenteeDTO getMentee() {
+//        return mentee;
+//    }
+//
+//    public void setMentee(MenteeDTO mentee) {
+//        this.mentee = mentee;
+//    }
 
     public String getDescription() {
         return description;
@@ -59,43 +52,11 @@ public class AdvertismentDTO {
         this._id = _id;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public DietGoals getDietGoals() {
+    public Integer getDietGoals() {
         return dietGoals;
     }
 
-    public void setDietGoals(DietGoals dietGoals) {
+    public void setDietGoals(Integer dietGoals) {
         this.dietGoals = dietGoals;
     }
 }

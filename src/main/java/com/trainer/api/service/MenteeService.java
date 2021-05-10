@@ -95,9 +95,16 @@ public class MenteeService implements MenteeRepo{
     @Override
     public Mentee detachTrainer(String idMentee, String idTrainer) {
         Mentee mentee = getMenteeByID(idMentee);
-        Trainer trainer = trainerRepo.getTrainerById(idTrainer);
+
         List<Trainer> trainers = mentee.getAssignedTainers();
-        trainers.remove(trainer);
+
+        for (int i = 0; i < trainers.size(); i++) {
+            if(trainers.get(i).get_id().equals(idTrainer)){
+                trainers.remove(i);
+                break;
+            }
+        }
+
         mentee.setAssignedTainers(trainers);
         return saveMentee(mentee);
     }

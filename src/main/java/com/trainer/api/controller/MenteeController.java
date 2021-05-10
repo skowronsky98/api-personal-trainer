@@ -53,15 +53,15 @@ public class MenteeController {
     }
 
     @PatchMapping("/trainer/attach")
-    public TrainerDTO attachTrainer(@RequestParam(value = "idt") String idTrainer,
-                                    @RequestParam(value = "idm") String idMentee){
+    public TrainerDTO attachTrainer(@RequestParam(value = "tid") String idTrainer,
+                                    @RequestParam(value = "mid") String idMentee){
         return mapper.getTrainerMapper()
                 .map(menteeRepo.assignTrainer(idMentee,idTrainer),TrainerDTO.class);
     }
 
     @PatchMapping("/trainer/detach")
-    public TrainerDTO detachTrainer(@RequestParam(value = "idt") String idTrainer,
-                                    @RequestParam(value = "idm") String idMentee){
+    public TrainerDTO detachTrainer(@RequestParam(value = "tid") String idTrainer,
+                                    @RequestParam(value = "mid") String idMentee){
         return mapper.getTrainerMapper()
                 .map(menteeRepo.detachTrainer(idMentee,idTrainer),TrainerDTO.class);
     }
@@ -107,7 +107,7 @@ public class MenteeController {
 
 
     @PostMapping("/advertisment")
-    public AdvertismentDTO addAdvertisment(@RequestParam(value = "id")  String idMentee, Advertisment advertisment){
+    public AdvertismentDTO addAdvertisment(@RequestParam(value = "id")  String idMentee, @RequestBody Advertisment advertisment){
         return mapper.getAdvertismentMapper()
                 .map(advertismentRepo.addAdvertisment(advertisment,idMentee),AdvertismentDTO.class);
 
@@ -123,8 +123,8 @@ public class MenteeController {
 
 
     @GetMapping("/advertisment/all")
-    public Collection<AdvertismentDTO> getAllAdvertisment(DietGoals dietGoals){
-        return advertismentRepo.getAdvertisment(dietGoals).stream()
+    public Collection<AdvertismentDTO> getAllAdvertisment(@RequestParam(value = "id")  Integer dietGoals){
+        return advertismentRepo.getAllAdvertisment(dietGoals).stream()
                         .map(add -> mapper.getAdvertismentMapper().map(add,AdvertismentDTO.class))
                 .collect(Collectors.toList());
     }

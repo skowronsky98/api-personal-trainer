@@ -64,7 +64,7 @@ public class Mapper {
                 map().setDescription(source.getDescription());
                 map().setDietGoals(source.getDietGoal());
 
-                map().setMentee(getMenteeMapper().map(source.getMentee(),MenteeDTO.class));
+//                map().setMentee(getMenteeMapper().map(source.getMentee(),MenteeDTO.class));
 
 
 //                map().setDietGoals(source);

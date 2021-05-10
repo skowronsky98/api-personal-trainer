@@ -42,14 +42,15 @@ public class PlanService {
         return subscritptionContent;
     }
 
-    public DailyPlan createDailyPlan(DailyPlan dailyPlan, String idTrainer){
-        return dailyPlanRepo.createDailyPlan(dailyPlan,idTrainer);
-    }
 
     public Boolean deleteWeekPlan(String idWeekPlan){
         weekPlanRepo.deleteWeekPlan(idWeekPlan);
         //TODO check if exist
         return true;
+    }
+
+    public DailyPlan createDailyPlan(DailyPlan dailyPlan, String idTrainer){
+        return dailyPlanRepo.createDailyPlan(dailyPlan,idTrainer);
     }
 
     public WeekPlan attachDailyPlan(String idWeekPlan, String idDailyPlan){

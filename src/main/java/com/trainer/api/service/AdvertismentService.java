@@ -31,10 +31,15 @@ public class AdvertismentService implements AdvertismentRepo {
     public Advertisment addAdvertisment(Advertisment advertisment, String idMentee) {
         Mentee mentee = menteeRepo.getMenteeByID(idMentee);
 
+        //check if mentee doesnt have advertisment already if yes delete old
+        if(mentee.getAdvertisment() != null)
+            deleteAdvertisment(idMentee);
+
         advertisment.setMentee(mentee);
+        mentee.setAdvertisment(advertisment);
+
         advertismentManager.save(advertisment);
 
-        mentee.setAdvertisment(advertisment);
         menteeRepo.saveMentee(mentee);
 
         return advertisment;
@@ -42,12 +47,11 @@ public class AdvertismentService implements AdvertismentRepo {
 
     @Override
     public Advertisment getAdvertisment(String idMentee) {
-        Mentee mentee = menteeRepo.getMenteeByID(idMentee);
 
         return advertismentManager
                 .findAll()
                 .stream()
-                .filter(ad -> ad.getMentee().equals(mentee))
+                .filter(ad -> ad.getMentee().get_id().equals(idMentee))
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFoundException("no advertisment to metee: "+idMentee));
     }
@@ -68,7 +72,7 @@ public class AdvertismentService implements AdvertismentRepo {
     }
 
     @Override
-    public List<Advertisment> getAdvertisment(DietGoals dietGoals) {
+    public List<Advertisment> getAllAdvertisment(Integer dietGoals) {
         return advertismentManager.findAll().stream()
                 .filter(advertisment -> advertisment.getDietGoal().equals(dietGoals))
                 .collect(Collectors.toList());
@@ -83,5 +87,6 @@ public class AdvertismentService implements AdvertismentRepo {
         menteeRepo.assignTrainer(advertisment.getMentee().get_id(),idTrainer);
 
         deleteAdvertisment(advertisment.getMentee().get_id());
+//        advertisment.setActive(false);
     }
 }

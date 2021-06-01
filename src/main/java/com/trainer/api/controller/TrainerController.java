@@ -120,7 +120,7 @@ public class TrainerController {
     }
 
     @GetMapping("/advertisment/all")
-    public Collection<AdvertismentDTO> getAllAdvertisment(Integer dietGoals){
+    public Collection<AdvertismentDTO> getAllAdvertisment(@RequestParam(value = "idg")Integer dietGoals){
         return advertismentRepo.getAllAdvertisment(dietGoals).stream()
                 .map(add -> mapper.getAdvertismentMapper().map(add,AdvertismentDTO.class))
                 .collect(Collectors.toList());

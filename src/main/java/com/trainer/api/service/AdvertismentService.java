@@ -1,11 +1,9 @@
 package com.trainer.api.service;
 
-import com.trainer.api.enums.DietGoals;
 import com.trainer.api.exception.ResourceNotFoundException;
 import com.trainer.api.manager.AdvertismentManager;
 import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.user.Mentee;
-import com.trainer.api.model.user.Trainer;
 import com.trainer.api.repo.AdvertismentRepo;
 import com.trainer.api.repo.MenteeRepo;
 import com.trainer.api.repo.TrainerRepo;
@@ -76,7 +74,7 @@ public class AdvertismentService implements AdvertismentRepo {
     @Override
     public List<Advertisment> getAllAdvertisment(Integer dietGoals) {
         return advertismentManager.findAll().stream()
-                .filter(advertisment -> advertisment.getDietGoal().equals(dietGoals))
+                .filter(advertisment -> advertisment.getDietGoals().equals(dietGoals))
                 .collect(Collectors.toList());
     }
 

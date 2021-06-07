@@ -62,7 +62,7 @@ public class Mapper {
                 map().setActive(source.getActive());
                 map().setPrice(source.getPrice());
                 map().setDescription(source.getDescription());
-                map().setDietGoals(source.getDietGoal());
+                map().setDietGoals(source.getDietGoals());
 
 //                map().setMentee(getMenteeMapper().map(source.getMentee(),MenteeDTO.class));
 

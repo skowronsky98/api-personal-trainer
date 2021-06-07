@@ -36,9 +36,11 @@ public class AdvertismentService implements AdvertismentRepo {
             deleteAdvertisment(idMentee);
 
         advertisment.setMentee(mentee);
-        mentee.setAdvertisment(advertisment);
 
-        advertismentManager.save(advertisment);
+
+        advertisment = advertismentManager.save(advertisment);
+
+        mentee.setAdvertisment(advertisment);
 
         menteeRepo.saveMentee(mentee);
 
@@ -51,7 +53,7 @@ public class AdvertismentService implements AdvertismentRepo {
         return advertismentManager
                 .findAll()
                 .stream()
-                .filter(ad -> ad.getMentee().get_id().equals(idMentee))
+                .filter(ad -> ad.getMentee().get_id() != null && ad.getMentee().get_id().equals(idMentee))
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFoundException("no advertisment to metee: "+idMentee));
     }

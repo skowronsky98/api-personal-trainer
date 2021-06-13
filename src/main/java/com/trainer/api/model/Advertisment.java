@@ -1,6 +1,5 @@
 package com.trainer.api.model;
 
-import com.trainer.api.enums.DietGoals;
 import com.trainer.api.model.user.Mentee;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -14,7 +13,7 @@ public class Advertisment {
     private Boolean active;
     private Double price;
     private String description;
-    private Integer dietGoal;
+    private Integer dietGoals;
 
     @DBRef(lazy = true)
     private Mentee mentee;
@@ -26,13 +25,13 @@ public class Advertisment {
                         Boolean active,
                         Double price,
                         String description,
-                        Integer dietGoal,
+                        Integer dietGoals,
                         Mentee mentee) {
         this._id = _id;
         this.active = active;
         this.price = price;
         this.description = description;
-        this.dietGoal = dietGoal;
+        this.dietGoals = dietGoals;
         this.mentee = mentee;
     }
 
@@ -76,11 +75,11 @@ public class Advertisment {
         this.description = description;
     }
 
-    public Integer getDietGoal() {
-        return dietGoal;
+    public Integer getDietGoals() {
+        return dietGoals;
     }
 
-    public void setDietGoal(Integer dietGoal) {
-        this.dietGoal = dietGoal;
+    public void setDietGoals(Integer dietGoals) {
+        this.dietGoals = dietGoals;
     }
 }

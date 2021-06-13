@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MenteeTest {
     @Test
-    public void AssignTrainerForMenteeAndSetWeekPlans() {
+    public void AssignTrainerToMenteeAndSetWeekPlans() {
         Mentee mentee = new Mentee();
         mentee.set_id("1");
         mentee.setEmail("testemail@gmail.com");
         Profile profile = new Profile();
         mentee.setProfile(profile);
-        mentee.setTarget("lose weight");
+        mentee.setTarget("Reduction");
         Dimensions dimensions = new Dimensions(10,30,45, 15, 90, 70);
         mentee.setDimensions(dimensions);
 
@@ -31,21 +31,19 @@ public class MenteeTest {
         mentee.addWeekPlan(weekPlan);
         mentee.addWeekPlan(weekPlan2);
 
-        assertEquals(2, mentee.getAssignedTainers().size());
         assertEquals(2, mentee.getWeekPlans().size());
     }
 
     @Test
     public void MenteeWeekPlansNullCheck(){
         Mentee mentee = new Mentee();
-
         assertNotEquals(null, mentee.getWeekPlans());
     }
 
     @Test
     public void MenteeAssignedTrainersNullCheck(){
         Mentee mentee = new Mentee();
-
         assertNotEquals(null, mentee.getAssignedTainers());
     }
+
 }

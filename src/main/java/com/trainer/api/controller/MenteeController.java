@@ -3,7 +3,6 @@ package com.trainer.api.controller;
 import com.trainer.api.dto.AdvertismentDTO;
 import com.trainer.api.dto.MenteeDTO;
 import com.trainer.api.dto.TrainerDTO;
-import com.trainer.api.enums.DietGoals;
 import com.trainer.api.mapper.Mapper;
 import com.trainer.api.model.Advertisment;
 import com.trainer.api.model.Dimensions;

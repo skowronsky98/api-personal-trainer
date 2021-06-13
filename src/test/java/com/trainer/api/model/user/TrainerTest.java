@@ -1,55 +1,42 @@
 package com.trainer.api.model.user;
 
 import com.trainer.api.model.Advertisment;
+import com.trainer.api.service.AdvertismentService;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TrainerTest {
 
-//    @Test
-//    public void TrainerAdvertTrue() {
-//        Advertisment advert = new Advertisment(true, (double) 150, "I invite everyone...");
-//        Trainer trainer = new Trainer();
-//        trainer.setAdvertisment(advert);
-//
-//        assertTrue(trainer.getAdvertisment().getActive());
-//
-//    }
+    @Test
+    public void AssignTrainerToMentee() {
+        Mentee mentee = new Mentee();
+        Advertisment advert = new Advertisment("1",true,150d,"I want to reduce my weight", 2,mentee);
+        Trainer trainer = new Trainer();
+        List<Trainer> trainersList = new ArrayList<>();
+        trainersList.add(trainer);
 
-//    @Test
-//    public void TrainerAdvertFalse() {
-//        Advertisment advert = new Advertisment(false, (double) 150, "I invite everyone...");
-//        Trainer trainer = new Trainer();
-//        trainer.setAdvertisment(advert);
-//
-//        assertFalse(trainer.getAdvertisment().getActive());
-//
-//    }
-//
-//
-//    @Test
-//    public void CheckPriceInTrainerAdvert() {
-//        Advertisment advert = new Advertisment(true, (double) 150, "I invite everyone...");
-//        Trainer trainer = new Trainer();
-//        trainer.setAdvertisment(advert);
-//
-//        assertEquals(advert.getPrice(), trainer.getAdvertisment().getPrice());
-//
-//    }
-//
-//    @Test
-//    public void TrainerMenteesNullChecker() {
-//        Trainer trainer = new Trainer();
-//
-//        assertNotEquals(null, trainer.getMentees());
-//    }
-//
-//    @Test
-//    public void TrainerMealsNullChecker() {
-//        Trainer trainer = new Trainer();
-//
-//        assertNotEquals(null, trainer.getMeals());
-//    }
+        mentee.setAdvertisment(advert);
+        mentee.setAssignedTainers(trainersList);
+
+        assertEquals(1,mentee.getAssignedTainers().stream().count());
+    }
+
+
+
+    @Test
+    public void TrainerMenteesNullChecker() {
+        Trainer trainer = new Trainer();
+        assertNotEquals(null, trainer.getMentees());
+    }
+
+    @Test
+    public void TrainerMealsNullChecker() {
+        Trainer trainer = new Trainer();
+        assertNotEquals(null, trainer.getMeals());
+    }
 
 }

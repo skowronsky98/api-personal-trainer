@@ -13,9 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DailyPlanTest {
 
-
-
-
     @Test
     public void AddMealPlanToDailyPlanAndCheck() {
         DailyPlan dailyPlan = new DailyPlan();
